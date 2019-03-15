@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: registry
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVICE:web.phone4pay.ru}:8001
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD:324cF7dt-3720-45w4-b28C-4N3b9e1960cS}
+      username: user
+
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    eviction-interval-timer-in-ms: 1500
+    renewalPercentThreshold: 0.49
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+

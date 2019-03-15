@@ -1,0 +1,39 @@
+logging:
+  level:
+    org.springframework.security: INFO
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 20
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${CONFIG_EUREKA_HOST:10.199.49.224}:8002/eureka/
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://${CONFIG_AUTH_HOST:10.199.49.224}:8003/uaa/oauth/token
+    resource:
+      user-info-uri: http://${CONFIG_AUTH_VERIFY_HOST:10.199.49.224}:8003/uaa/users/current
+
+spring:
+  redis:
+    host: ${CONFIG_REDIS_HOST:10.199.49.224}
+    port: 6379
+    database: 0
+    password:
+  rabbitmq:
+    host: ${CONFIG_RABBIT_HOST:10.199.49.224}
