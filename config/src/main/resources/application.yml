@@ -12,4 +12,4 @@ server:
 
 security:
   user:
-    password: ${CONFIG_SERVICE_PASSWORD:324cF7dt-3720-45w4-b28C-4N3b9e1960cS}
+    password: ${CONFIG_SERVICE_PASSWORD:}
