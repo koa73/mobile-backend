@@ -2,6 +2,8 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
+    <turboFilter class="ch.qos.logback.classic.turbo.DuplicateMessageFilter"/>
+
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
         <file>${LOG_PATH}/${LOG_FILE}.log</file>
