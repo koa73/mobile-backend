@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: mobile
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVICE:web.phone4pay.ru}:${CONFIG_SERVICE_PORT:8001}
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD:}
+      username: user
+
+logging:
+  level:
+    #ru.phone4pay.paymentgw.client.ProcessingClientTest: DEBUG
