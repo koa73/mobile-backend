@@ -60,6 +60,7 @@
         <module>proxy</module>
         <module>mobile</module>
         <module>web</module>
+        <module>lib</module>
     </modules>
 
 
