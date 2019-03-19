@@ -1,0 +1,31 @@
+server:
+  port: 8005
+spring:
+  datasource:
+    tomcat:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://${CONFIG_DB_HOST:}:5432/${PG_DB_NAME:}
+      username: ${PG_USER:}
+      password: ${PG_PWD:}
+      initial-size: 5
+      max-active: 10
+      max-idle: 5
+      min-idle: 2
+  application:
+    name: web-ui
+
+security:
+  oauth2:
+    client:
+      clientId: ${UI_SERVICE_USER:}
+      clientSecret: ${UI_SERVICE_PASSWORD:}
+      grant-type: client_credentials
+      scope: web-server
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 25000

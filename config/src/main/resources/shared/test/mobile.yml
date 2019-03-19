@@ -1,0 +1,22 @@
+server:
+  port: 8006
+spring:
+  datasource:
+        tomcat:
+            driver-class-name: org.postgresql.Driver
+            url: jdbc:postgresql://${CONFIG_DB_HOST:}:5432/${PG_DB_NAME:}
+            username: ${PG_USER:}
+            password: ${PG_PWD:}
+            initial-size: 5
+            max-active: 10
+            max-idle: 5
+            min-idle: 2
+  application:
+    name: front-service
+security:
+  oauth2:
+    client:
+      clientId: ${ACCOUNT_SERVICE_USER:}
+      clientSecret: ${ACCOUNT_SERVICE_PASSWORD:}
+      grant-type: client_credentials
+      scope: server

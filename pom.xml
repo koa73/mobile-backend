@@ -58,6 +58,8 @@
         <module>registry</module>
         <module>oauth</module>
         <module>proxy</module>
+        <module>mobile</module>
+        <module>web</module>
     </modules>
 
 

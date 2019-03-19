@@ -7,10 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config" />
+        <module name="mobile" />
         <module name="oauth" />
         <module name="proxy" />
         <module name="registry" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mobfront" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

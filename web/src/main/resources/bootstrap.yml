@@ -1,12 +1,23 @@
 spring:
   application:
-    name: proxy
+    name: web
+  mvc:
+    locale: ru
+
   cloud:
     config:
       uri: http://${CONFIG_SERVICE:}:${CONFIG_SERVICE_PORT:8001}
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD:}
       username: user
-  mvc:
-    favicon:
-      enabled: false
+  messages:
+    encoding: UTF-8
+    basename: messages
+
+server:
+  session:
+    timeout: 3600
+    cookie:
+       max-age: 3600
+  use-forward-headers: true
+
