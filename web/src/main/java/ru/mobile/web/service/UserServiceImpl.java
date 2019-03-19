@@ -2,7 +2,7 @@ package ru.mobile.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.phone4pay.ui.repository.UserDAO;
+import ru.mobile.web.repository.UserDAO;
 
 import java.util.Map;
 
