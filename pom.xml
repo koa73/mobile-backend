@@ -57,6 +57,7 @@
         <module>config</module>
         <module>registry</module>
         <module>oauth</module>
+        <module>proxy</module>
     </modules>
 
 

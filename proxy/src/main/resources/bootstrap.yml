@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: proxy
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVICE:web.phone4pay.ru}:8001
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD:}
+      username: user
+  mvc:
+    favicon:
+      enabled: false

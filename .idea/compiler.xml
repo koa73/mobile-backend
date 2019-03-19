@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config" />
         <module name="oauth" />
+        <module name="proxy" />
         <module name="registry" />
       </profile>
     </annotationProcessing>
