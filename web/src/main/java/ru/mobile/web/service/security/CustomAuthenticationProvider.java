@@ -10,7 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
-import ru.mobile.lib.service.security.FireBase.JWTParser;
+import ru.mobile.lib.service.Firebase.JWTParser;
 
 
 /**
