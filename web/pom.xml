@@ -73,7 +73,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>web-ui</finalName>
+                    <finalName>web</finalName>
                     <outputDirectory>${dir}</outputDirectory>
                 </configuration>
             </plugin>
