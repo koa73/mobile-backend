@@ -13,7 +13,7 @@ eureka:
     hostname: localhost
   server:
     eviction-interval-timer-in-ms: 500
-    renewalPercentThreshold: 0.85
+    renewalPercentThreshold: 0.49
   client:
     registerWithEureka: false
     fetchRegistry: false

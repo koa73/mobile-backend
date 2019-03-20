@@ -24,15 +24,15 @@ zuul:
         stripPrefix: false
         sensitiveHeaders:
 
-    maobile-service:
+    maobile:
         path: /mobile/**
-        serviceId: mail-service
+        serviceId: mobile
         stripPrefix: false
         sensitiveHeaders:
 
-    web-service:
+    web:
                 path: /**
-                serviceId: web-gateway
+                serviceId: web
                 stripPrefix: false
                 sensitiveHeaders:
 
