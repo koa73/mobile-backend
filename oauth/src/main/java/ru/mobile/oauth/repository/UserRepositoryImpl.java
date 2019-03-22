@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import ru.mobile.oauth.domain.Candidate;
 import ru.mobile.oauth.domain.PwdChange;
 import ru.mobile.oauth.domain.User;

@@ -54,7 +54,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 		@Autowired
 		private DbUserDetailsService userDetailsService;
 
-
+/*
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			// @formatter:off
@@ -64,6 +64,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.csrf().disable();
 			// @formatter:on
 		}
+*/
 
 		@Override
 		@Bean
@@ -140,7 +141,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 			oauthServer
 					.tokenKeyAccess("permitAll()")
-					.checkTokenAccess("permitAll()");
+					.checkTokenAccess("isAuthenticated()");
 		}
 
 		@Bean
