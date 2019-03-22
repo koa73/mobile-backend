@@ -56,17 +56,6 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 
 
 		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-					.authorizeRequests().anyRequest().authenticated()
-					.and()
-					.csrf().disable();
-			// @formatter:on
-		}
-
-
-		@Override
 		@Bean
 		public AuthenticationManager authenticationManagerBean() throws Exception {
 			//return super.authenticationManagerBean();
