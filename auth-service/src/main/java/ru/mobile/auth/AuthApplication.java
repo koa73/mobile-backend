@@ -1,4 +1,4 @@
-package ru.mobile.oauth;
+package ru.mobile.auth;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +24,9 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import ru.mobile.oauth.exceptions.CustomWebResponseExceptionTranslator;
-import ru.mobile.oauth.service.security.CustomAuthenticationProvider;
-import ru.mobile.oauth.service.security.DbUserDetailsService;
+import ru.mobile.auth.exceptions.CustomWebResponseExceptionTranslator;
+import ru.mobile.auth.service.security.CustomAuthenticationProvider;
+import ru.mobile.auth.service.security.DbUserDetailsService;
 
 import java.util.Arrays;
 
@@ -34,10 +34,10 @@ import java.util.Arrays;
 @EnableResourceServer
 @EnableDiscoveryClient
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class OAuthApplication extends WebMvcConfigurerAdapter {
+public class AuthApplication extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OAuthApplication.class, args);
+		SpringApplication.run(AuthApplication.class, args);
 	}
 
 	@Configuration
@@ -64,7 +64,6 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.csrf().disable();
 			// @formatter:on
 		}
-
 
 		@Override
 		@Bean
@@ -109,7 +108,23 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.scopes("web-server");
 		}
 
+/*
+		@Autowired
+		private RedisConnectionFactory redisConnectionFactory;
 
+		@Override
+		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+			RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
+			tokenStore.setPrefix("oauth2:");
+			endpoints
+					.tokenStore(tokenStore)
+					.reuseRefreshTokens(false)
+					.authenticationManager(authenticationManager)
+					.userDetailsService(userDetailsService);
+		}
+
+
+*/
         private TokenStore tokenStore = new InMemoryTokenStore();
 
         @Override
