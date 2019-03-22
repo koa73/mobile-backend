@@ -55,6 +55,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 		private DbUserDetailsService userDetailsService;
 
 
+
 		@Override
 		@Bean
 		public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -126,6 +127,12 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.exceptionTranslator(webResponseExceptionTranslator());
         }
 
+		@Override
+		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+			oauthServer
+					.tokenKeyAccess("permitAll()")
+					.checkTokenAccess("permitAll()");
+		}
 
 		@Bean
 		public WebResponseExceptionTranslator webResponseExceptionTranslator() {
