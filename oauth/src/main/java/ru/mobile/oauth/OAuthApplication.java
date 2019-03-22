@@ -40,39 +40,6 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 		SpringApplication.run(OAuthApplication.class, args);
 	}
 
-	@Configuration
-	@EnableWebSecurity
-	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-		@Bean
-		@ConfigurationProperties(prefix="spring.datasource.tomcat")
-		public DataSource dataSource() {
-
-			return new DataSource();
-		}
-
-		@Autowired
-		private DbUserDetailsService userDetailsService;
-
-
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-					.authorizeRequests().anyRequest().authenticated()
-					;
-			// @formatter:on
-		}
-
-
-		@Override
-		@Bean
-		public AuthenticationManager authenticationManagerBean() throws Exception {
-			//return super.authenticationManagerBean();
-			return new ProviderManager(Arrays.asList(new CustomAuthenticationProvider(userDetailsService)));
-		}
-	}
-
 
 	@Configuration
 	@EnableAuthorizationServer
@@ -108,23 +75,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.scopes("web-server");
 		}
 
-/*
-		@Autowired
-		private RedisConnectionFactory redisConnectionFactory;
 
-		@Override
-		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-			RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-			tokenStore.setPrefix("oauth2:");
-			endpoints
-					.tokenStore(tokenStore)
-					.reuseRefreshTokens(false)
-					.authenticationManager(authenticationManager)
-					.userDetailsService(userDetailsService);
-		}
-
-
-*/
         private TokenStore tokenStore = new InMemoryTokenStore();
 
         @Override
