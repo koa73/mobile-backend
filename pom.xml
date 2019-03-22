@@ -50,7 +50,6 @@
         <module>mobile</module>
         <module>web</module>
         <module>lib</module>
-        <module>auth-service</module>
     </modules>
 
 
