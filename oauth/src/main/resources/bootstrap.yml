@@ -7,13 +7,3 @@ spring:
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD:}
       username: user
-
-app:
-  secure:
-     user: ${ACCOUNT_SERVICE_USER:}
-     password: ${ACCOUNT_SERVICE_PASSWORD:}
-
-
-logging:
-  level:
-  ru.mobile.oauth: DEBUG

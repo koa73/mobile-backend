@@ -140,7 +140,7 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 			oauthServer
 					.tokenKeyAccess("permitAll()")
-					.checkTokenAccess("isAuthenticated()");
+					.checkTokenAccess("permitAll()");
 		}
 
 		@Bean
