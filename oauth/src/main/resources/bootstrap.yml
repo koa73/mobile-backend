@@ -13,3 +13,7 @@ app:
      user: ${ACCOUNT_SERVICE_USER:}
      password: ${ACCOUNT_SERVICE_PASSWORD:}
 
+
+logging:
+  level:
+  ru.mobile.oauth: DEBUG
