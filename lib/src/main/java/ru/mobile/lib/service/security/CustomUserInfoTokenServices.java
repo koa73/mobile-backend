@@ -139,13 +139,13 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 			final ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 			final HttpServletRequest request = (attr.getRequest());
 			final Map<String, Object> map = restTemplate.getForEntity(path, Map.class).getBody();
-/*
+
 			for ( Map.Entry<String, Object> entry : map.entrySet()) {
 				String key = entry.getKey();
 				Object tab = entry.getValue();
 				logger.error("=== :"+key+" : "+tab);
 			}
-*/
+
 			if (!request.getRequestURI().equals("/p4p/user/1154")){
 				if ( map.get("principal") instanceof Map){
 					final Map<String, String> principal = (Map<String, String>) map.get("principal");
