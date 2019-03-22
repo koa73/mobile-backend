@@ -7,3 +7,8 @@ spring:
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD:}
       username: user
+
+app:
+  secure:
+    user: ${ACCOUNT_SERVICE_USER:service-name_custom}
+    password: ${ACCOUNT_SERVICE_PASSWORD:HUjsdBUGH7ty21w1b7465R3w2$#fdxasd235DAQCXZCvbvzf@}
