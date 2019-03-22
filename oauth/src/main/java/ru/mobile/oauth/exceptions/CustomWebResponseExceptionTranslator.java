@@ -36,7 +36,7 @@ public class CustomWebResponseExceptionTranslator extends DefaultWebResponseExce
         String resultCode = e.getMessage().replaceAll(".*@(\\d{3})$", "$1");
 
         if (resultCode.length() !=3){
-            resultCode = "115";
+            resultCode = "1150";
         }
         log.error(body.toString());
         body.addAdditionalInformation("resultCode", resultCode);

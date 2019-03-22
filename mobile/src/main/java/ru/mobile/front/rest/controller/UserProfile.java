@@ -33,6 +33,8 @@ public class UserProfile {
     //@PreAuthorize("hasRole('ROLE_APP')")
     public UserCreateResp createUser(@RequestBody UserCreateReq request, Principal principal, BindingResult bindingResult)
             throws RestApiException {
+        log.error("HHHHHHHHHHHHHHHHHHHHHHHHH");
+
         if (bindingResult.hasErrors())
             throw new RestApiException(bindingResult, 2000);
 
