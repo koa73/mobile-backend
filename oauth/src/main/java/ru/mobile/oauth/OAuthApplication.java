@@ -1,5 +1,6 @@
 package ru.mobile.oauth;
 
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +28,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import ru.mobile.oauth.exceptions.CustomWebResponseExceptionTranslator;
 import ru.mobile.oauth.service.security.CustomAuthenticationProvider;
 import ru.mobile.oauth.service.security.DbUserDetailsService;
-
 import java.util.Arrays;
 
 @SpringBootApplication
