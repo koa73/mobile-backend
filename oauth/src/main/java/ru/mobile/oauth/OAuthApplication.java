@@ -56,16 +56,6 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 
 
 		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-					.authorizeRequests().anyRequest().authenticated()
-					.and()
-					.csrf().disable();
-			// @formatter:on
-		}
-
-		@Override
 		@Bean
 		public AuthenticationManager authenticationManagerBean() throws Exception {
 			//return super.authenticationManagerBean();
@@ -136,12 +126,6 @@ public class OAuthApplication extends WebMvcConfigurerAdapter {
 					.exceptionTranslator(webResponseExceptionTranslator());
         }
 
-		@Override
-		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer
-					.tokenKeyAccess("permitAll()")
-					.checkTokenAccess("permitAll()");
-		}
 
 		@Bean
 		public WebResponseExceptionTranslator webResponseExceptionTranslator() {
