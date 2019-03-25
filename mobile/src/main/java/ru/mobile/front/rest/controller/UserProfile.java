@@ -4,7 +4,6 @@ package ru.mobile.front.rest.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,6 @@ import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
 import ru.mobile.lib.rest.exceptions.RestApiException;
 
-import javax.validation.constraints.Null;
 import java.security.Principal;
 
 @RestController
