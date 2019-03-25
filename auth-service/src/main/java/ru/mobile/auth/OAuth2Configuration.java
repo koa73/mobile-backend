@@ -3,6 +3,7 @@ package ru.mobile.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -25,19 +26,22 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private Environment env;
+
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("acme")
-                .secret("acmesecret")
+                .withClient(env.getProperty("BASE_ACCOUNT"))
+                .secret(env.getProperty("BASE_ACCOUNT_PASSWORD"))
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("read", "write")
                 .authorities("ROLE_APP")
                 .accessTokenValiditySeconds(120)
                 .and()
-                .withClient("service-account")
-                //withClient(env.getProperty("ACCOUNT_SERVICE_USER"))
-                .secret("HUjsdDsfd@js$s83ByNlRngvZOA12")
-                //.secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
+                //.withClient("service-account")
+                .withClient(env.getProperty("ACCOUNT_SERVICE_USER"))
+                //.secret("HUjsdDsfd@js$s83ByNlRngvZOA12")
+                .secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server");
     }
