@@ -27,7 +27,7 @@ zuul:
     maobile:
         path: /mobile/**
         serviceId: mobile
-        stripPrefix: false
+        stripPrefix: true
         sensitiveHeaders:
 
     web-ui:
