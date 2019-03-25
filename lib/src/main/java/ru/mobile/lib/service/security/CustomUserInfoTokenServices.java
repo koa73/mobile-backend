@@ -145,14 +145,14 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 				Object tab = entry.getValue();
 				logger.error("=== :"+key+" : "+tab);
 			}
-
+*/
 			if ( map.get("principal") instanceof Map){
 				final Map<String, String> principal = (Map<String, String>) map.get("principal");
 				if (principal.containsKey("phone"))
 					request.setAttribute("phone", principal.get("phone"));
 			}
 
-*/
+
 
 			return map;
 		}
