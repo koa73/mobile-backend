@@ -152,8 +152,6 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 					request.setAttribute("phone", principal.get("phone"));
 			}
 
-
-
 			return map;
 		}
 		catch (Exception ex) {
