@@ -32,7 +32,14 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("read", "write")
                 .authorities("ROLE_APP")
-                .accessTokenValiditySeconds(120);
+                .accessTokenValiditySeconds(120)
+                .and()
+                .withClient("service-account")
+                //withClient(env.getProperty("ACCOUNT_SERVICE_USER"))
+                .secret("HUjsdDsfd@js$s83ByNlRngvZOA12")
+                //.secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
+                .authorizedGrantTypes("client_credentials", "refresh_token")
+                .scopes("server");
     }
 
     @Override
