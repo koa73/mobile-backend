@@ -36,7 +36,7 @@ public class UserProfile {
         if (bindingResult.hasErrors())
             throw new RestApiException(bindingResult, 2000);
 
-        log.error(principal.getName());
+        log.error(principal.getName(), principal.toString());
 
         return null;
     }
