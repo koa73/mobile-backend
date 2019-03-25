@@ -1,4 +1,4 @@
-package ru.mobile.lib.service.Firebase;
+package ru.mobile.lib.service.firebase;
 
 import ru.mobile.lib.rest.exceptions.RestApiException;
 

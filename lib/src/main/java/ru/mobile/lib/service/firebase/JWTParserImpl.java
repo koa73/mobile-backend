@@ -1,4 +1,4 @@
-package ru.mobile.lib.service.Firebase;
+package ru.mobile.lib.service.firebase;
 
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
