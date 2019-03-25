@@ -1,8 +1,8 @@
-package ru.mobile.oauth.repository;
+package ru.mobile.auth.repository;
 
-import ru.mobile.oauth.domain.Candidate;
-import ru.mobile.oauth.domain.PwdChange;
-import ru.mobile.oauth.domain.User;
+import ru.mobile.auth.domain.Candidate;
+import ru.mobile.auth.domain.PwdChange;
+import ru.mobile.auth.domain.User;
 
 /**
  *

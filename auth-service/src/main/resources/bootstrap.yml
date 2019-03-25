@@ -7,3 +7,8 @@ spring:
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD:}
       username: user
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3

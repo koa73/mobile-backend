@@ -1,4 +1,4 @@
-package ru.mobile.oauth.controller;
+package ru.mobile.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.mobile.oauth.domain.Candidate;
-import ru.mobile.oauth.domain.PwdChange;
-import ru.mobile.oauth.exceptions.AuthApiException;
-import ru.mobile.oauth.service.UserService;
+import ru.mobile.auth.domain.Candidate;
+import ru.mobile.auth.domain.PwdChange;
+import ru.mobile.auth.exceptions.AuthApiException;
+import ru.mobile.auth.service.UserService;
 
 import java.security.Principal;
 

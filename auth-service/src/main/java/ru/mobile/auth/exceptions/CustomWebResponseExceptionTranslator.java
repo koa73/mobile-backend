@@ -1,4 +1,4 @@
-package ru.mobile.oauth.exceptions;
+package ru.mobile.auth.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

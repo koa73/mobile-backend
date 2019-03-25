@@ -1,12 +1,12 @@
-package ru.mobile.oauth.service.security;
+package ru.mobile.auth.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.mobile.oauth.domain.User;
-import ru.mobile.oauth.repository.UserRepository;
+import ru.mobile.auth.domain.User;
+import ru.mobile.auth.repository.UserRepository;
 
 /**
  *

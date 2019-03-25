@@ -1,9 +1,9 @@
-package ru.mobile.oauth.service;
+package ru.mobile.auth.service;
 
 
-import ru.mobile.oauth.domain.Candidate;
-import ru.mobile.oauth.domain.PwdChange;
-import ru.mobile.oauth.exceptions.AuthApiException;
+import ru.mobile.auth.domain.Candidate;
+import ru.mobile.auth.domain.PwdChange;
+import ru.mobile.auth.exceptions.AuthApiException;
 
 
 /**

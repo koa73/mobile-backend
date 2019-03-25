@@ -1,4 +1,4 @@
-package ru.mobile.oauth.service;
+package ru.mobile.auth.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.mobile.oauth.domain.Candidate;
-import ru.mobile.oauth.domain.PwdChange;
-import ru.mobile.oauth.domain.User;
-import ru.mobile.oauth.exceptions.AuthApiException;
-import ru.mobile.oauth.repository.UserRepository;
+import ru.mobile.auth.domain.Candidate;
+import ru.mobile.auth.domain.PwdChange;
+import ru.mobile.auth.domain.User;
+import ru.mobile.auth.exceptions.AuthApiException;
+import ru.mobile.auth.repository.UserRepository;
 
 /**
  *

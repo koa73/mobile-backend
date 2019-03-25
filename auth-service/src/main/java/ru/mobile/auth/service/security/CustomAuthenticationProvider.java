@@ -1,4 +1,4 @@
-package ru.mobile.oauth.service.security;
+package ru.mobile.auth.service.security;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import ru.mobile.oauth.domain.User;
+import ru.mobile.auth.domain.User;
 
 /**
  *

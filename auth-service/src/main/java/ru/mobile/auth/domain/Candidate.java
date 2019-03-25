@@ -1,4 +1,4 @@
-package ru.mobile.oauth.domain;
+package ru.mobile.auth.domain;
 
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

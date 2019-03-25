@@ -1,4 +1,4 @@
-package ru.mobile.oauth.exceptions;
+package ru.mobile.auth.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.http.HttpStatus;

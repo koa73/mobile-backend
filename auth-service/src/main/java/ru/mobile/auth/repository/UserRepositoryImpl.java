@@ -1,4 +1,4 @@
-package ru.mobile.oauth.repository;
+package ru.mobile.auth.repository;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +8,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.mobile.oauth.domain.Candidate;
-import ru.mobile.oauth.domain.PwdChange;
-import ru.mobile.oauth.domain.User;
-import ru.mobile.oauth.domain.UserRowMapper;
+import ru.mobile.auth.domain.Candidate;
+import ru.mobile.auth.domain.PwdChange;
+import ru.mobile.auth.domain.User;
+import ru.mobile.auth.domain.UserRowMapper;
 
 import java.sql.Types;
 import java.util.Map;

@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/mob-front/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth/pom.xml" />
       </set>
     </option>
   </component>
