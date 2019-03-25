@@ -27,9 +27,6 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @EnableOAuth2Client
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties
-@EnableFeignClients(basePackages = {"ru.phone4pay.common.client", "ru.phone4pay.ui.client"})
-@ComponentScan({"ru.phone4pay.common.repository", "ru.phone4pay.common.service.FireBase",
-        "ru.phone4pay.common.service.uuid", "ru.phone4pay.ui"})
 @Configuration
 public class WebApplication {
 
