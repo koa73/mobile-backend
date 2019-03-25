@@ -31,12 +31,14 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+
                 .withClient(env.getProperty("BASE_ACCOUNT"))
                 .secret(env.getProperty("BASE_ACCOUNT_PASSWORD"))
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token")
                 .scopes("read", "write")
                 .authorities("ROLE_APP")
                 .accessTokenValiditySeconds(120)
+
                 .and()
                 //.withClient("service-account")
                 .withClient(env.getProperty("ACCOUNT_SERVICE_USER"))
