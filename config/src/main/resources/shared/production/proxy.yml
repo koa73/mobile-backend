@@ -31,10 +31,10 @@ zuul:
         sensitiveHeaders:
 
     web-service:
-                path: /**
-                serviceId: web-gateway
-                stripPrefix: false
-                sensitiveHeaders:
+        path: /**
+        serviceId: web-gateway
+        stripPrefix: true
+        sensitiveHeaders:
 
 server:
   port: 8443
