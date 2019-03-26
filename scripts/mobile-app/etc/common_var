@@ -1,0 +1,28 @@
+LOG_PATH=/usr/local/mobile-app/logs
+ROOTDIR=/usr/local/mobile-app
+## Configuration service variables
+#
+ENV_NAME=test
+CONFIG_SERVICE_PASSWORD=324cF7dt-3720-45w4-b28C-4N3b9e1960cS
+CONFIG_SERVICE=web.phone4pay.ru
+CONFIG_SERVICE_PORT=8001
+#
+## DB access variables
+#
+CONFIG_DB_HOST=10.199.49.228
+PG_DB_NAME=mobile_db
+PG_USER=mobileAdmin
+PG_PWD=Gawstr#541QWb
+#
+# OAuth access variables
+#
+BASE_ACCOUNT=acme
+BASE_ACCOUNT_PASSWORD=acmesecret
+UI_SERVICE_USER=ui-service-account
+UI_SERVICE_PASSWORD=H%^IVG091fd@js$s83ByNlRngFTsWad10
+ACCOUNT_SERVICE_USER=service-account
+ACCOUNT_SERVICE_PASSWORD=HUjsdDsfd@js$s83ByNlRngvZOA12
+#
+# GCM
+#
+GCM_KEY=AAAA4YGts7w:APA91bFFv0sW3I-hJAbqKNC0g74q5-ZLCXLY_oU8FYEi5W090qet5PU1cUAK0jQIrGIz6ebBtxNfaHI6kSdH35rZdLO8sCFqoSoawXUjRzC1hQKDDazwCPcsW7n_nq8pZhtOkXJ1hLiQ
