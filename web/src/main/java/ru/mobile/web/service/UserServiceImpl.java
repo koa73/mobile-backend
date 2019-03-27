@@ -2,6 +2,7 @@ package ru.mobile.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.mobile.web.repository.UserDAO;
 
 import java.util.Map;
 
@@ -12,10 +13,12 @@ import java.util.Map;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    UserDAO repository;
 
     @Override
     public Map<String, Object> getUserProfile(String phone) {
 
-        return null;
+        return repository.getUserProfile(phone);
     }
 }
