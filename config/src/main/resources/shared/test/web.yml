@@ -12,7 +12,7 @@ spring:
       max-idle: 5
       min-idle: 2
   application:
-    name: web-ui
+    name: web
 
 security:
   oauth2:
