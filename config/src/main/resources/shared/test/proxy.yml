@@ -33,7 +33,7 @@ zuul:
     web-ui:
         path: /web/**
         serviceId: web-ui
-        stripPrefix: true
+        stripPrefix: false
         sensitiveHeaders:
 
 server:
