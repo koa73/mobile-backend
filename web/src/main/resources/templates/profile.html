@@ -1,0 +1,55 @@
+<div class="col-md-6" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="card" style="padding-bottom: 20px;">
+        <div class="card-header card-header-icon" data-background-color="blue">
+            <i class="material-icons">perm_identity</i>
+        </div>
+        <div class="card-content">
+            <h4 class="card-title" th:text="#{profile.item}"/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label" th:text="#{profile.user}"/>
+                        <input type="text" class="form-control" value="" disabled id="uname">
+                        <span class="material-input"></span></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label" th:text="#{profile.email}" />
+                        <input type="text" class="form-control" disabled name="email" th:value="${user.get('email')}">
+                        <span class="material-input"></span></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label" th:text="#{profile.state}" />
+                        <input th:if="${user.get('state') != null}" type="text" class="form-control" disabled
+                               th:value="${user.get('state')}=='true'?#{common.active}:#{common.block}">
+                        <input th:if="${user.get('state') == null}" type="text" class="form-control" disabled
+                               th:value="#{profile.empty}">
+                        <span class="material-input"></span></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group label-floating">
+                        <label class="control-label" th:text="#{profile.registered}" />
+                        <input type="text" class="form-control" disabled th:value="${user.get('registered')}">
+                        <span class="material-input"></span></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group label-floating">
+                        <label class="control-label" th:text="#{profile.lastlogin}" />
+                        <input type="text" class="form-control" disabled th:value="${user.get('lastlogin')}">
+                        <span class="material-input"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
