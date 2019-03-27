@@ -31,9 +31,9 @@ zuul:
         sensitiveHeaders:
 
     web-ui:
-        path: /web/**
+        path: /**
         serviceId: web-ui
-        stripPrefix: true
+        stripPrefix: false
         sensitiveHeaders:
 
 server:
