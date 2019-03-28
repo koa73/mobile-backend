@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @EnableConfigurationProperties
 @Configuration
 @ComponentScan({"ru.mobile.web", "ru.mobile.lib.service.firebase", "ru.mobile.lib.repository"})
+@EnableFeignClients(basePackages = {"ru.mobile.lib.client"})
 public class WebApplication {
 
     public static void main(String[] args) {
