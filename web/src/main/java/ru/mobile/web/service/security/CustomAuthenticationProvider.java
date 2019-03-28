@@ -40,7 +40,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         if(!jwtParser.phoneVerify(phone, credentials)) {
 
-            log.error("<<===============>> ");
             throw new BadCredentialsException("Bad credentials");
         }
 
