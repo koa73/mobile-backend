@@ -30,6 +30,26 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: get_user_info(character varying); Type: FUNCTION; Schema: public; Owner: mobileAdmin
+--
+
+CREATE FUNCTION get_user_info(in_phone character varying, OUT email character varying, OUT state character varying, OUT registered character varying, OUT lastlogin character varying) RETURNS record
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  
+BEGIN
+  SELECT a.email, a.enabled, to_char(a.registered, 'DD/MM/YYYY  HH24:MI:SS  TZ'),
+  to_char(a.lastlogin, 'DD/MM/YYYY  HH24:MI:SS  TZ') 
+  INTO email, state, registered, lastlogin
+  FROM public.users a WHERE a.phone = in_phone;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_user_info(in_phone character varying, OUT email character varying, OUT state character varying, OUT registered character varying, OUT lastlogin character varying) OWNER TO "mobileAdmin";
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -58,7 +78,8 @@ ALTER TABLE users OWNER TO "mobileAdmin";
 --
 
 COPY users (uid, phone, password, email, enabled, trycount, registered, lastlogin, regid) FROM stdin;
-d59f5984-a4d5-5c56-99a4-7cf69765c04a	79260000000	$2a$10$RbTg4p79mHLw8PgVd/BYi.chzXN7T/uJFR67bKetoW09rFn5nWhWC	test@test.ru	t	0	2017-07-26 15:32:25+03	2019-03-26 15:50:15.600041+03	dhCsdXBGM7I:APA91bH0PyfWq1f680nKRr5z_tQKCCUthXZb65YuUaIKoeEfjPIJiob-H6AwCEudZ4MGylHHNJWXS7Ckvf-h3rxJ52ksUGRwELYb9tywAAuIg4-i0URwER0Q4M_EnW9aGhY22c4dTohB
+d59f5984-a4d5-5c56-99a4-7cf69765c04a	79260000000	$2a$10$RbTg4p79mHLw8PgVd/BYi.chzXN7T/uJFR67bKetoW09rFn5nWhWC	test@test.ru	t	0	2017-07-26 15:32:25+03	2019-03-28 15:43:46.222124+03	dhCsdXBGM7I:APA91bH0PyfWq1f680nKRr5z_tQKCCUthXZb65YuUaIKoeEfjPIJiob-H6AwCEudZ4MGylHHNJWXS7Ckvf-h3rxJ52ksUGRwELYb9tywAAuIg4-i0URwER0Q4M_EnW9aGhY22c4dTohB
+eca392ca-415b-584f-9519-dfe87a32cccb	79265197181	$2a$10$RbTg4p79mHLw8PgVd/BYi.chzXN7T/uJFR67bKetoW09rFn5nWhWC	test@test.ru	t	0	2019-03-28 16:02:14+03	2019-03-28 21:24:08.588311+03	dhCsdXBGM7I:APA91bH0PyfWq1f680nKRr5z_tQKCCUthXZb65YuUaIKoeEfjPIJiob-H6AwCEudZ4MGylHHNJWXS7Ckvf-h3rxJ52ksUGRwELYb9tywAAuIg4-i0URwER0Q4M_EnW9aGhY22c4dTohB
 \.
 
 
