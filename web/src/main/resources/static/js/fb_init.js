@@ -4,12 +4,12 @@
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCADg-mxaUHx-FXnFP51nAEr118Zu8VLbQ",
-    authDomain: "eternal-argon-124716.firebaseapp.com",
-    databaseURL: "https://eternal-argon-124716.firebaseio.com",
-    projectId: "eternal-argon-124716",
-    storageBucket: "eternal-argon-124716.appspot.com",
-    messagingSenderId: "968543286204"
+    apiKey: "AIzaSyDrEYhBvV9JBq0kSd-Ws7osdiL7T3PkOVI",
+    authDomain: "mobile-front.firebaseapp.com",
+    databaseURL: "https://mobile-front.firebaseio.com",
+    projectId: "mobile-front",
+    storageBucket: "mobile-front.appspot.com",
+    messagingSenderId: "952720125865"
 };
 
 firebase.initializeApp(config);
