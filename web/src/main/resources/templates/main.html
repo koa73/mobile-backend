@@ -98,20 +98,7 @@
 
 <div th:replace="fragments/footer :: script"></div>
 <!-- -->
-<script type="text/javascript" th:inline="javascript">
-    /*<![CDATA[*/
-        var info = {
-            [[#{link.card}]]:[[#{link.info.0}]],
-            [[#{link.txt}]]:[[#{link.info.1}]],
-            [[#{link.fixtxt}]]:[[#{link.info.2}]],
-            [[#{link.sum}]]:[[#{link.info.3}]],
-            [[#{link.fixsum}]]:[[#{link.info.4}]],
-            "main":[[#{link.info.5}]]
-        };
-    var operations = ["", [[#{operation.transfer}]], [[#{operation.receive}]], [[#{operation.send}]]];
-    /*]]>*/
-</script>
 
-<script src="https://ui.phone4pay.ru/js/main.min.js"></script>
+<script src="/js/main.min.js"></script>
 </body>
 </html>
