@@ -1,6 +1,6 @@
 spring:
   resources:
-      static-locations: "classpath:/static/"
+      static-locations: "classpath:/static/, classpath:/public/"
   application:
     name: web
   mvc:
