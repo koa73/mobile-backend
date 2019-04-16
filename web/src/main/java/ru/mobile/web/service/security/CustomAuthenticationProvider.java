@@ -21,7 +21,7 @@ import ru.mobile.lib.service.firebase.JWTParser;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired(required = false)
     JWTParser jwtParser;

@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/assets/**", "/login", "/data/url").permitAll()
+                .antMatchers("/assets/**", "/login", "/data/url", "/ext/**").permitAll()
                 .anyRequest().hasAuthority("WEB_USER")
                 .and()
                 .formLogin()
@@ -42,4 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().cacheControl();
     }
+
 }
+
+
+
