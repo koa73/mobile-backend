@@ -42,8 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().cacheControl();
     }
-
 }
-
 
 
