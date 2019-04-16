@@ -1,6 +1,6 @@
 spring:
   resources:
-      static-locations: "classpath:/META-INF/resources/, classpath:/static/, classpath:/resources/, file:/usr/local/mobile-app/web"
+      static-locations: "classpath:/META-INF/resources/, classpath:/static/, classpath:/resources/, file:/usr/local/mobile-app/web/"
   application:
     name: web
   mvc:
