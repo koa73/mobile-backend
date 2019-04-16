@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 //@Configuration
 //@EnableWebMvc
+// Not used
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
