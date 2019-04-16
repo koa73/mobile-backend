@@ -2,7 +2,7 @@ spring:
   application:
     name: web
   mvc:
-    static-path-pattern: /**
+    static-path-pattern: /resources/**
     locale: ru
 
   cloud:
