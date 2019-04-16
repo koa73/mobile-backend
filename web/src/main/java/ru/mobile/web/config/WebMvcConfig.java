@@ -13,7 +13,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/**")
-                .addResourceLocations("/");
+                .addResourceLocations("/resources/", "classpath:/resources/");
 
     }
 }
