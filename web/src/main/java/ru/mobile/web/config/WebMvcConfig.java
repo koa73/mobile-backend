@@ -15,7 +15,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                 .addResourceHandler("/**")
                 .addResourceLocations("classpath:/META-INF/resources/",
                         "classpath:/resources/",
-                        "classpath:/static/",
+
                         "classpath:/public/");
 
     }
