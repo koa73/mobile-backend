@@ -81,7 +81,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(Throwable.class)
 	public ResponseEntity<RestApiException> handleException(Throwable throwable, HttpServletRequest req) {
 
-		log.error("----------------------------------------------------------------------------\n");
+		log.error("----------------------------------------------------------------------------\n"+ throwable.getMessage()+"\n"+throwable.getCause());
 		final int cmdCode = Integer.parseInt(req.getRequestURI().replaceAll(".*/(\\d{4}).*?","$1"))+1000;
 
 		log.error("Cause : "+throwable.getCause()+ throwable.getMessage());
@@ -89,7 +89,7 @@ public class GlobalControllerAdvice {
 		if (throwable.getCause() != null)
 			causeMessage = " " + throwable.getCause().getMessage();
 
-		RestApiException exception=new RestApiException(HttpStatus.INTERNAL_SERVER_ERROR, cmdCode, 100,
+		RestApiException exception = new RestApiException(HttpStatus.INTERNAL_SERVER_ERROR, cmdCode, 100,
 				throwable.getMessage()  + causeMessage);
 		return handleException(exception, req);
 	}
