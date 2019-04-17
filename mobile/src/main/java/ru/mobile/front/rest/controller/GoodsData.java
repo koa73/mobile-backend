@@ -14,14 +14,13 @@ import ru.mobile.lib.rest.exceptions.RestApiException;
 import ru.mobile.lib.rest.exceptions.WebApiException;
 
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/goods",
         method = RequestMethod.POST,
-        //headers = {"Content-Type=application/json"},
+        headers = {"Content-Type=application/json"},
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
@@ -46,8 +45,8 @@ public class GoodsData {
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
     //@RequestBody String operId
-    public ResponseEntity<String> getTopicList(@Size(min = 0, max = 2, message = "txtMsg") @RequestParam(name = "topic_id")
-                                                     String topic_id) throws WebApiException {
+    public ResponseEntity<String> getTopicList(@Pattern(regexp = "\\d{1,2}",message="topic_id.") @RequestParam(name = "topic_id")
+                                                     int topic_id) throws WebApiException {
 
         log.error("Topic : "+topic_id);
         return ResponseEntity.ok(""+topic_id);
