@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
+import ru.mobile.lib.rest.exception.GlobalControllerAdvice;
 
 /**
  *
@@ -52,6 +53,11 @@ public class WebApplication {
     @Bean
     public MethodValidationPostProcessor methodValidationPostProcessor() {
         return new MethodValidationPostProcessor();
+    }
+
+    @Bean
+    public GlobalControllerAdvice globalControllerAdvice(){
+        return new GlobalControllerAdvice();
     }
 
 }
