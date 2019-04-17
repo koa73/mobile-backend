@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.mobile.lib.rest.exceptions.WebApiException;
 import ru.mobile.web.rest.exception.Messages;
-import ru.mobile.web.rest.exception.WebApiException;
 import ru.mobile.web.service.UserService;
 
 import java.security.Principal;
@@ -44,7 +44,7 @@ public class LoginController {
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET )
-    public String test(Principal principal, Model model) throws WebApiException{
+    public String test(Principal principal, Model model) throws WebApiException {
 
         //--- Logging ---
         log.error("User "+principal.getName()+" has logged.");
