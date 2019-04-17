@@ -47,12 +47,11 @@ public class GoodsData {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public List<TopicsView> getTopicList(@RequestParam(name = "topic_id") int topic_id,
-                                         Principal principal, BindingResult bindingResult)
+    public List<TopicsView> getTopicList(@RequestParam(name = "topic_id") int topic_id, Principal principal)
             throws RestApiException {
 
-        if (bindingResult.hasErrors())
-            throw new RestApiException(bindingResult, 1002);
+        //if (bindingResult.hasErrors())
+          //  throw new RestApiException(bindingResult, 1002);
 
         log.error("Topic : "+topic_id);
 
