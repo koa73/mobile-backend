@@ -40,7 +40,7 @@ import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 @EnableConfigurationProperties
 @EnableAsync
 @Configuration
-//@ComponentScan({"ru.mobile.front", "ru.mobile.lib.rest.exception", "ru.mobile.lib.repository"})
+@ComponentScan({"ru.mobile.front", "ru.mobile.lib.repository"})
 public class MobileApplication extends ResourceServerConfigurerAdapter {
 
     @Autowired

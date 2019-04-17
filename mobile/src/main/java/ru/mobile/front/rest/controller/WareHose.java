@@ -2,6 +2,7 @@ package ru.mobile.front.rest.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
+import ru.mobile.front.service.WarehouseService;
 import ru.mobile.lib.rest.exception.RestApiException;
 
 
@@ -24,10 +26,12 @@ import java.security.Principal;
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
-public class GoodsData {
+public class WareHose {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    @Autowired
+    WarehouseService warehouseService;
 
     @RequestMapping(path = "/item")
     //@PreAuthorize("hasRole('ROLE_USER')")
@@ -46,6 +50,8 @@ public class GoodsData {
     //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1, message = "invalid topic_id value.")
                                                    @RequestParam("topic_id") int topic_id) throws RestApiException {
+
+        warehouseService.getTopics(topic_id);
 
         log.error("Topic : "+topic_id);
         return ResponseEntity.ok(""+topic_id);
