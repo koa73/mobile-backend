@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.mobile.front.rest.model.Topics;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.TopicsView;
 import ru.mobile.front.rest.view.UserCreateResp;
@@ -14,10 +13,7 @@ import ru.mobile.lib.rest.exceptions.RestApiException;
 
 import javax.validation.constraints.Pattern;
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 @RestController
 @RequestMapping(path = "/goods",
