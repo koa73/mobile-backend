@@ -46,8 +46,7 @@ public class GoodsData {
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
     //@RequestBody String operId
-    public ResponseEntity<String> getTopicList(@Pattern(regexp = "^\\d{1,2}$", message="topic_id.")
-                                                   @RequestParam(name = "topic_id") int topic_id) throws WebApiException {
+    public ResponseEntity<String> getTopicList(@RequestParam("topic_id") int topic_id) throws WebApiException {
 
         log.error("Topic : "+topic_id);
         return ResponseEntity.ok(""+topic_id);
