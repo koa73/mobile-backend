@@ -28,7 +28,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties
 @Configuration
-@ComponentScan({"ru.mobile.web", "ru.mobile.lib.rest.exception", "ru.mobile.lib.service.firebase", "ru.mobile.lib.repository"})
+@ComponentScan({"ru.mobile.web", "ru.mobile.lib.service.firebase", "ru.mobile.lib.repository"})
 @EnableFeignClients(basePackages = {"ru.mobile.lib.client"})
 public class WebApplication {
 

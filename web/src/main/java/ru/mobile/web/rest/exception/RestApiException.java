@@ -1,4 +1,4 @@
-package ru.mobile.lib.rest.exceptions;
+package ru.mobile.web.rest.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.slf4j.Logger;

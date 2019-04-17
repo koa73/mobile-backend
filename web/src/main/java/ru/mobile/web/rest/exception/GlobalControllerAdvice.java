@@ -1,4 +1,4 @@
-package ru.mobile.lib.rest.exceptions;
+package ru.mobile.web.rest.exception;
 
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import feign.FeignException;
@@ -81,6 +81,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(Throwable.class)
 	public ResponseEntity<RestApiException> handleException(Throwable throwable, HttpServletRequest req) {
 
+		log.error("----------------------------------------------------------------------------\n");
 		final int cmdCode = Integer.parseInt(req.getRequestURI().replaceAll(".*/(\\d{4}).*?","$1"))+1000;
 
 		log.error("Cause : "+throwable.getCause()+ throwable.getMessage());
