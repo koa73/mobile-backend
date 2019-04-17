@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.mobile.front.rest.exception.RestApiException;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
-import ru.mobile.lib.rest.exceptions.RestApiException;
-import ru.mobile.lib.rest.exceptions.WebApiException;
+
 
 import javax.validation.constraints.Digits;
 import java.security.Principal;
