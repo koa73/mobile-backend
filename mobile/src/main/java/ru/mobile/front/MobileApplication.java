@@ -21,7 +21,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
-import ru.mobile.front.rest.exception.GlobalControllerAdvice;
 import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 
 
