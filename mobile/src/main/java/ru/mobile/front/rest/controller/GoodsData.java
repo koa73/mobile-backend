@@ -50,12 +50,7 @@ public class GoodsData {
     public List<TopicsView> getTopicList(@Pattern(regexp = "\\d{1,3}",message="topic_id.") @RequestParam(name = "topic_id")
                                                      int topic_id) throws RestApiException {
 
-        //if (bindingResult.hasErrors())
-          //  throw new RestApiException(bindingResult, 1002);
-
         log.error("Topic : "+topic_id);
-
-
         return null;
     }
 }
