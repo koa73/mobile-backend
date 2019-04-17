@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -39,6 +40,7 @@ import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 @EnableConfigurationProperties
 @EnableAsync
 @Configuration
+@ComponentScan({"ru.mobile.mobile", "ru.mobile.lib.rest.exceptions", "ru.mobile.lib.repository"})
 public class MobileApplication extends ResourceServerConfigurerAdapter {
 
     @Autowired

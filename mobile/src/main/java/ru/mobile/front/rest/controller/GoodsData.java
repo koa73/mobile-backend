@@ -1,6 +1,5 @@
 package ru.mobile.front.rest.controller;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -15,7 +14,6 @@ import ru.mobile.lib.rest.exceptions.RestApiException;
 import ru.mobile.lib.rest.exceptions.WebApiException;
 
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Pattern;
 import java.security.Principal;
 
 @Controller
@@ -46,8 +44,8 @@ public class GoodsData {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    //@RequestBody String operId
-    public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1) @RequestParam("topic_id") int topic_id) throws WebApiException {
+    public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1) @RequestParam("topic_id") int topic_id)
+            throws WebApiException {
 
         log.error("Topic : "+topic_id);
         return ResponseEntity.ok(""+topic_id);
