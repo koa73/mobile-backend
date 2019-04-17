@@ -21,11 +21,10 @@ import java.util.ListIterator;
 
 @RestController
 @RequestMapping(path = "/goods",
-        method = RequestMethod.POST
-        //,
+        method = RequestMethod.POST,
         //headers = {"Content-Type=application/json"},
-        //consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        //produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
 public class GoodsData {
 
