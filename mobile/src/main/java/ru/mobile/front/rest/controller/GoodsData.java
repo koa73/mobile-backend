@@ -5,11 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mobile.front.rest.model.UserCreateReq;
-import ru.mobile.front.rest.view.TopicsView;
 import ru.mobile.front.rest.view.UserCreateResp;
 import ru.mobile.lib.rest.exceptions.RestApiException;
 import ru.mobile.lib.rest.exceptions.WebApiException;
@@ -17,7 +17,7 @@ import ru.mobile.lib.rest.exceptions.WebApiException;
 import javax.validation.constraints.Pattern;
 import java.security.Principal;
 
-@RestController
+@Controller
 @Validated
 @RequestMapping(path = "/goods",
         method = RequestMethod.POST,
