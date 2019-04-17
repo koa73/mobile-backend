@@ -81,7 +81,7 @@ public class MobileApplication extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/" ).permitAll()
+                .antMatchers("/", "/goods/topic" ).permitAll()
                 .anyRequest().authenticated();
     }
 }
