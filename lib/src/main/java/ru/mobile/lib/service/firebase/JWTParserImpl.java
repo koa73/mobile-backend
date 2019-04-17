@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.mobile.lib.client.GoogleCertClient;
-import ru.mobile.lib.rest.exceptions.RestApiException;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

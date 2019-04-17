@@ -1,6 +1,7 @@
 package ru.mobile.lib.service.firebase;
 
-import ru.mobile.lib.rest.exceptions.RestApiException;
+
+import ru.mobile.lib.rest.exception.RestApiException;
 
 /**
  *
