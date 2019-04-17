@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.mobile.front.rest.model.Topics;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.TopicsView;
@@ -49,7 +46,8 @@ public class GoodsData {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public List<TopicsView> getTopicList(@Pattern(regexp = "\\d{1,2}",message="rid.") int topic_id, Principal principal, BindingResult bindingResult)
+    public List<TopicsView> getTopicList(@Pattern(regexp = "\\d{1,2}",message="topic_id.") @RequestParam(name = "topic_id") int topic_id,
+                                         Principal principal, BindingResult bindingResult)
             throws RestApiException {
 
         if (bindingResult.hasErrors())
