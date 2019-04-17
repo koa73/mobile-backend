@@ -21,10 +21,11 @@ import java.util.ListIterator;
 
 @RestController
 @RequestMapping(path = "/goods",
-        method = RequestMethod.POST,
-        headers = {"Content-Type=application/json"},
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+        method = RequestMethod.POST
+        //,
+        //headers = {"Content-Type=application/json"},
+        //consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+        //produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
 public class GoodsData {
 
@@ -46,7 +47,7 @@ public class GoodsData {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public List<TopicsView> getTopicList(@Pattern(regexp = "\\d{1,2}",message="topic_id.") @RequestParam(name = "topic_id") int topic_id,
+    public List<TopicsView> getTopicList(@RequestParam(name = "topic_id") int topic_id,
                                          Principal principal, BindingResult bindingResult)
             throws RestApiException {
 
