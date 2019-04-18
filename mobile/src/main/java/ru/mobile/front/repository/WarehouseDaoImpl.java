@@ -41,7 +41,7 @@ public class WarehouseDaoImpl implements WarehouseDAO {
 
         } catch (Exception e){
 
-            log.error(e.getMessage()+"--> "+e.getCause());
+            log.error(e.getMessage()+"-******************************-> "+e.getCause());
 
             throw new RestApiException(101, e.getLocalizedMessage());
         }
