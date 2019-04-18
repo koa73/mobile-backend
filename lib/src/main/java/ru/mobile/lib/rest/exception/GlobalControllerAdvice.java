@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.nio.file.AccessDeniedException;
 import java.util.Collections;
 
 @ControllerAdvice
@@ -21,23 +20,15 @@ public class GlobalControllerAdvice {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
-
-	@ExceptionHandler({AccessDeniedException.class})
-	public ResponseEntity<Object> handleAccessDeniedException2(Exception ex, WebRequest request) {
-		return new ResponseEntity<Object>(new WebApiException(100, "Everything is BAD.1"), new HttpHeaders(), HttpStatus.FORBIDDEN);
-	}
-
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
 
 		log.error(ex.getMessage()+"----\n"+ex.getCause()+"-----\n"+ex.getClass().getCanonicalName());
 
 		//return new ResponseEntity<Object>("Access denied message here", new HttpHeaders(), HttpStatus.FORBIDDEN);
-		WebApiException exception = new WebApiException(100, "Everything is BAD.1");
+		RestApiException exception = new RestApiException(100, "Everything is BAD.");
 		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
 	}
-
-
 
 
 	@InitBinder
