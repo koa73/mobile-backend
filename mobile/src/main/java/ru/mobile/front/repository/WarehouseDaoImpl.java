@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import ru.mobile.front.rest.view.TopicsView;
 import ru.mobile.lib.repository.TemplateCall;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 import java.sql.Types;
 import java.util.List;
@@ -22,18 +23,27 @@ public class WarehouseDaoImpl implements WarehouseDAO {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
-    public List<TopicsView> getTopics(int topic_id) {
+    public List<TopicsView> getTopics(int topic_id) throws RestApiException {
 
-        Map<String, Object> out = template.simpleTemplateCall(
-                "get_topic",
-                new SqlParameter[] {
-                        new SqlParameter("in_id", Types.SMALLINT),
-                },
-                new MapSqlParameterSource()
-                        .addValue("in_id", topic_id));
+        try {
 
-        log.error("--------------> \n"+out.get("returnvalue").toString());
+            Map<String, Object> out = template.simpleTemplateCall(
+                    "get_topic",
+                    new SqlParameter[] {
+                            new SqlParameter("in_id", Types.SMALLINT),
+                    },
+                    new MapSqlParameterSource()
+                            .addValue("in_id", topic_id));
 
-        return null;
+            log.error("--------------> \n"+out.get("returnvalue").toString());
+
+            return null;
+
+        } catch (Exception e){
+
+            log.error(e.getMessage()+"--> "+e.getCause());
+
+            throw new RestApiException(101, e.getLocalizedMessage());
+        }
     }
 }
