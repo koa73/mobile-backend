@@ -10,54 +10,33 @@ import org.springframework.validation.ObjectError;
 @JsonIgnoreProperties(value =
         {"cause", "stackTrace", "localizedMessage", "suppressed", "code", "message", "status", "causeReason"},
         ignoreUnknown=true)
+
 public class RestApiException extends Exception {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
-    private final HttpStatus status;
-
-    private int cmdCode;
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     private int resultCode;
-
     private String errMsg;
+    private String reason;
 
-    private String causeReason;
 
-    public RestApiException(int cmdCode, int resultCode, String errMsg ) {
-        this.status= HttpStatus.BAD_REQUEST;
-        this.cmdCode = cmdCode;
+    public RestApiException(int resultCode, String errMsg){
         this.resultCode = resultCode;
         this.errMsg = errMsg;
-    }
-
-    public RestApiException(HttpStatus status, int cmdCode, int resultCode, String errMsg ) {
-        this.status=status;
-        this.cmdCode = cmdCode;
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
-    }
-
-    public RestApiException(HttpStatus status, int resultCode, String errMsg ) {
-        this.status=status;
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
+        this.reason = null;
     }
 
 
-    public RestApiException(int resultCode, String errMsg ) {
-        this.cmdCode = 0;
-        this.status= HttpStatus.BAD_REQUEST;
+    public RestApiException(int resultCode, String errMsg, String causeReason){
         this.resultCode = resultCode;
         this.errMsg = errMsg;
+        this.reason = causeReason;
     }
 
-    public RestApiException(BindingResult result, int cmdCode) {
 
-        this.status= HttpStatus.BAD_REQUEST;
-        this.cmdCode = cmdCode;
+    public RestApiException(BindingResult result) {
+
         this.resultCode = 102;
-
         StringBuilder buffer=new StringBuilder();
         boolean isFirst=true;
         for(ObjectError error : result.getAllErrors()) {
@@ -72,40 +51,37 @@ public class RestApiException extends Exception {
     }
 
 
-    public HttpStatus getStatus() {
-        return status;
+    public int getResultCode() {
+        return resultCode;
     }
 
-    public int getCmdCode() {
-        return cmdCode;
-    }
-
-    public void setCmdCode(int cmdCode) {
-        this.cmdCode = cmdCode;
+    public void setResultCode(int resultCode) {
+        this.resultCode = resultCode;
     }
 
     public String getErrMsg() {
         return errMsg;
     }
 
-    public int getResultCode() {
-        return resultCode;
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
-    public String getCauseReason() {
-        return causeReason;
+    public String getReason() {
+        return reason;
     }
 
-    public void setCauseReason(String causeReason) {
-        this.causeReason = causeReason;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     @Override
     public String toString() {
+
         return "{"+
-                "\"cmdCode\":\""+cmdCode+
-                "\", resultCode\":\""+resultCode+
-                "\", \"error\":\""+errMsg+
+                "\"status\":\""+resultCode+
+                "\", \"message\":\""+errMsg +
+                "\", \"cause\":\""+reason +
                 "\"}";
     }
 
