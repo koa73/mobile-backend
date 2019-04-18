@@ -75,7 +75,7 @@ public class JWTParserImpl implements JWTParser {
             if (claims.getSubject() == null){
 
                 log.error("Claim content error : " + "UID isn't setted.");
-                throw new RestApiException(cmdCode, 116, "UID error.");
+                throw new RestApiException(116, "UID error.");
             }
 
             final String phoneVerified = String.valueOf(claims.get("phone_number"));
@@ -85,23 +85,23 @@ public class JWTParserImpl implements JWTParser {
         } catch (MissingClaimException e) {
 
             log.error("Claim content error : " + e.getMessage());
-            throw new RestApiException(cmdCode, 116, e.getLocalizedMessage());
+            throw new RestApiException(116, e.getLocalizedMessage());
 
         } catch (IncorrectClaimException e) {
 
             log.error("Incorrect Claim error. Reason: " + e.getMessage());
-            throw new RestApiException(cmdCode, 116, e.getLocalizedMessage());
+            throw new RestApiException(116, e.getLocalizedMessage());
 
 
         } catch (SignatureException e){
 
             log.error("JWT Signature error : " + e.getMessage());
-            throw new RestApiException(cmdCode, 116, e.getLocalizedMessage());
+            throw new RestApiException(116, e.getLocalizedMessage());
 
         } catch (Exception e){
 
             log.error("JWT parse uncnown error. Reason: " + e.getMessage());
-            throw new RestApiException(cmdCode, 116, e.getLocalizedMessage());
+            throw new RestApiException(116, e.getLocalizedMessage());
         }
     }
 
