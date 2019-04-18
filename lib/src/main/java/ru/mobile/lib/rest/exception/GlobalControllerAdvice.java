@@ -3,6 +3,7 @@ package ru.mobile.lib.rest.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.MutablePropertyValues;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,25 @@ public class GlobalControllerAdvice {
 	}
 
 
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<RestApiException> handleException(DataIntegrityViolationException e, HttpServletRequest req) {
+
+		log.error("+++++++++++++++++++++++++++++++++++++++9999999999999999999999999");
+
+		int resultCode = 102; // unknown SQL req error
+		String errMsg = "SQL request error.";
+
+		final String errorCode = e.getCause().getLocalizedMessage().replaceAll(".*errCode:\\s(\\d{3})(.*\n.*)*", "$1");
+		if (errorCode.length() == 3) {
+			resultCode = Integer.parseInt(errorCode);
+			errMsg = e.getCause().getLocalizedMessage().replaceAll(".*:\\s(.*)\\serrCode(.*\n.*)*", "$1");
+		}
+
+		RestApiException exception=new RestApiException(
+				resultCode,
+				errMsg);
+		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	}
 
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
