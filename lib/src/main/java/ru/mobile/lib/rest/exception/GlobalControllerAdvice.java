@@ -45,12 +45,6 @@ public class GlobalControllerAdvice {
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler({ AccessDeniedException.class })
-	public ResponseEntity<RestApiException> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
-		RestApiException exception = new RestApiException(104, "Access denied.");
-		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
-	}
-
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ResponseEntity<RestApiException> handleException(HttpMessageNotReadableException e, HttpServletRequest req){
 		RestApiException exception = new RestApiException(101, "Wrong json request format.");
