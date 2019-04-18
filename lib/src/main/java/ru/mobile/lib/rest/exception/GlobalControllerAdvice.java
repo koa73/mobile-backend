@@ -56,11 +56,12 @@ public class GlobalControllerAdvice {
 
 		Set<String> messages = new HashSet<>(constraintViolations.size());
 		messages.addAll(constraintViolations.stream()
-				.map(constraintViolation -> String.format("%s value '%s' %s",
+				.map(constraintViolation -> String.format("%s value '%s' %s", constraintViolation.getPropertyPath(),
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
 
-		RestApiException exception = new RestApiException(105, "Wrong request value.", messages.toString());
+		log.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"+e.getMessage()+" >>>> "+e.getCause()+" +++++ \n"+e.getConstraintViolations()+"----<<<<\n"+messages);
+		RestApiException exception = new RestApiException(105, "Wrong request value.", messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
