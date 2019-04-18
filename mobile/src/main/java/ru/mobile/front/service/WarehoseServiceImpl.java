@@ -4,7 +4,6 @@ package ru.mobile.front.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mobile.front.repository.WarehouseDAO;
-import ru.mobile.front.rest.view.TopicsView;
 import ru.mobile.lib.rest.exception.RestApiException;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class WarehoseServiceImpl implements WarehouseService {
     WarehouseDAO repository;
 
     @Override
-    public List<TopicsView> getTopics(int topic_id){
+    public String getTopics(int topic_id){
 
         return repository.getTopics(topic_id);
     }

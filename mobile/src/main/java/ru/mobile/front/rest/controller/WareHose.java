@@ -48,11 +48,9 @@ public class WareHose {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1, message = "invalid topic_id value.")
+    public String getTopicList(@Digits(integer=3, fraction=1, message = "invalid topic_id value.")
                                                    @RequestParam("topic_id") int topic_id) throws RestApiException {
 
-        warehouseService.getTopics(topic_id);
-
-        return ResponseEntity.ok(""+topic_id);
+        return warehouseService.getTopics(topic_id);
     }
 }
