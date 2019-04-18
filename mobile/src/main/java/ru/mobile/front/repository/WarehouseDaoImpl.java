@@ -25,25 +25,16 @@ public class WarehouseDaoImpl implements WarehouseDAO {
     @Override
     public List<TopicsView> getTopics(int topic_id) throws RestApiException {
 
-        try {
+        Map<String, Object> out = template.simpleTemplateCall(
+                "get_topic",
+                new SqlParameter[] {
+                        new SqlParameter("in_id", Types.SMALLINT),
+                },
+                new MapSqlParameterSource()
+                        .addValue("in_id", topic_id));
 
-            Map<String, Object> out = template.simpleTemplateCall(
-                    "get_topic",
-                    new SqlParameter[] {
-                            new SqlParameter("in_id", Types.SMALLINT),
-                    },
-                    new MapSqlParameterSource()
-                            .addValue("in_id", topic_id));
+        log.error("--------------> \n"+out.get("returnvalue").toString());
 
-            log.error("--------------> \n"+out.get("returnvalue").toString());
-
-            return null;
-
-        } catch (Exception e){
-
-            log.error(e.getMessage()+"-******************************-> "+e.getCause());
-
-            throw new RestApiException(101, e.getLocalizedMessage());
-        }
+        return null;
     }
 }
