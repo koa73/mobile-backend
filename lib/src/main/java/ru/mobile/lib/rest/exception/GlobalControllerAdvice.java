@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,7 +22,6 @@ public class GlobalControllerAdvice {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
-
 	@ExceptionHandler(RestApiException.class)
 	public ResponseEntity<RestApiException> handleException(RestApiException exception, HttpServletRequest request){
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -31,9 +31,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<RestApiException> handleException(DataIntegrityViolationException e, HttpServletRequest req) {
 
-		log.error("+++++++++++++++++++++++++++++++++++++++9999999999999999999999999");
-
-		int resultCode = 102; // unknown SQL req error
+		int resultCode = 103; // unknown SQL req error
 		String errMsg = "SQL request error.";
 
 		final String errorCode = e.getCause().getLocalizedMessage().replaceAll(".*errCode:\\s(\\d{3})(.*\n.*)*", "$1");
@@ -42,10 +40,14 @@ public class GlobalControllerAdvice {
 			errMsg = e.getCause().getLocalizedMessage().replaceAll(".*:\\s(.*)\\serrCode(.*\n.*)*", "$1");
 		}
 
-		RestApiException exception=new RestApiException(
-				resultCode,
-				errMsg);
+		RestApiException exception = new RestApiException(resultCode, errMsg, "SQL request error.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler({ AccessDeniedException.class })
+	public ResponseEntity<RestApiException> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+		RestApiException exception = new RestApiException(104, "Access denied.");
+		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
 	}
 
 	@ExceptionHandler({ Throwable.class })

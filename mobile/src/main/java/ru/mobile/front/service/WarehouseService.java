@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface WarehouseService {
 
-    List<TopicsView> getTopics(int topic_id) throws RestApiException;
+    List<TopicsView> getTopics(int topic_id);
     String getItems(int item_id) throws RestApiException;
 }

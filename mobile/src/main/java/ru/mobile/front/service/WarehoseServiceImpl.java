@@ -17,7 +17,7 @@ public class WarehoseServiceImpl implements WarehouseService {
     WarehouseDAO repository;
 
     @Override
-    public List<TopicsView> getTopics(int topic_id) throws RestApiException {
+    public List<TopicsView> getTopics(int topic_id){
 
         return repository.getTopics(topic_id);
     }

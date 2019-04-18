@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import ru.mobile.front.rest.view.TopicsView;
 import ru.mobile.lib.repository.TemplateCall;
-import ru.mobile.lib.rest.exception.RestApiException;
 
 import java.sql.Types;
 import java.util.List;
@@ -23,7 +22,7 @@ public class WarehouseDaoImpl implements WarehouseDAO {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
-    public List<TopicsView> getTopics(int topic_id) throws RestApiException {
+    public List<TopicsView> getTopics(int topic_id){
 
         Map<String, Object> out = template.simpleTemplateCall(
                 "get_topic",
