@@ -1,7 +1,6 @@
 package ru.mobile.lib.rest.validation;
 
 
-
 import ru.mobile.lib.rest.validation.constraint.IntIDConstraint;
 
 import javax.validation.Constraint;
