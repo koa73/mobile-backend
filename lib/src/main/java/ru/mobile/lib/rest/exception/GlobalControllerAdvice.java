@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
@@ -48,7 +52,15 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<RestApiException> handleException(ConstraintViolationException e, HttpServletRequest req){
 
-		log.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"+e.getMessage()+" >>>> "+e.getCause()+" +++++ \n"+e.getConstraintViolations().toString());
+		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
+
+		Set<String> messages = new HashSet<>(constraintViolations.size());
+		messages.addAll(constraintViolations.stream()
+				.map(constraintViolation -> String.format("%s value '%s' %s", constraintViolation.getPropertyPath(),
+						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
+				.collect(Collectors.toList()));
+
+		log.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"+e.getMessage()+" >>>> "+e.getCause()+" +++++ \n"+e.getConstraintViolations()+"----<<<<\n"+messages);
 		RestApiException exception = new RestApiException(105, "Wrong request value.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
