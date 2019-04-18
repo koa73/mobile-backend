@@ -1,5 +1,5 @@
 100 - Unknown error
-101 - Data Base request error
-102 - Bad JSON request values
+101 - Bad JSON request values or format
+102 - Data Base request error
 103 - Unknown SQL error
 104 - Access denied

@@ -36,7 +36,7 @@ public class RestApiException extends Exception {
 
     public RestApiException(BindingResult result) {
 
-        this.resultCode = 102;
+        this.resultCode = 101; // Bad JSON request values or format
         StringBuilder buffer=new StringBuilder();
         boolean isFirst=true;
         for(ObjectError error : result.getAllErrors()) {

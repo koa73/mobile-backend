@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -48,6 +49,12 @@ public class GlobalControllerAdvice {
 	public ResponseEntity<RestApiException> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
 		RestApiException exception = new RestApiException(104, "Access denied.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<RestApiException> handleException(HttpMessageNotReadableException e, HttpServletRequest req){
+		RestApiException exception = new RestApiException(101, "Wrong json request format.");
+		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler({ Throwable.class })
