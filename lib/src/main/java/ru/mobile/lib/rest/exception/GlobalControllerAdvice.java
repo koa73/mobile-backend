@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.util.Collections;
 
 @ControllerAdvice
@@ -42,6 +43,12 @@ public class GlobalControllerAdvice {
 		}
 
 		RestApiException exception = new RestApiException(resultCode, errMsg, "SQL request error.");
+		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<RestApiException> handleException(ConstraintViolationException e, HttpServletRequest req){
+		RestApiException exception = new RestApiException(700, "Wrong request value.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
