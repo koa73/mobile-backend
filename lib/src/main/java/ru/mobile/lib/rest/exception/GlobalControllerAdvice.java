@@ -25,9 +25,8 @@ public class GlobalControllerAdvice {
 
 		log.error(ex.getMessage()+"----\n"+ex.getCause()+"-----\n"+ex.getClass().getCanonicalName());
 
-		//return new ResponseEntity<Object>("Access denied message here", new HttpHeaders(), HttpStatus.FORBIDDEN);
 		RestApiException exception = new RestApiException(100, "Everything is BAD.", ex.getCause().toString());
-		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
+		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
 
