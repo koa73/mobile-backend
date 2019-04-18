@@ -50,7 +50,7 @@ public class GlobalControllerAdvice {
 	public ResponseEntity<RestApiException> handleException(ConstraintViolationException e, HttpServletRequest req){
 
 		log.error(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n"+e.getMessage()+" >>>> "+e.getCause());
-		RestApiException exception = new RestApiException(700, "Wrong request value.");
+		RestApiException exception = new RestApiException(105, "Wrong request value.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
