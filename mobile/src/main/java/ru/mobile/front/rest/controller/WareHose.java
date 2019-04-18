@@ -49,7 +49,7 @@ public class WareHose {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id)
+    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3, message = "Hi") @RequestParam("topic_id") int topic_id)
             throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getTopics(topic_id));
