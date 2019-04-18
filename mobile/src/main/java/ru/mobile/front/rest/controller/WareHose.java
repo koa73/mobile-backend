@@ -51,7 +51,6 @@ public class WareHose {
     public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1, message = "invalid topic_id value.")
                                                    @RequestParam("topic_id") int topic_id) throws RestApiException {
 
-
         return ResponseEntity.ok(warehouseService.getTopics(topic_id));
     }
 }
