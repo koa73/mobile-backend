@@ -21,13 +21,13 @@ public class GlobalControllerAdvice {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	@ExceptionHandler({ Throwable.class })
-	public ResponseEntity<Object> handleAccessDeniedException(
-			Exception ex, WebRequest request) {
+	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
 
 		log.error(ex.getMessage()+"----\n"+ex.getCause()+"-----\n"+ex.getClass().getCanonicalName());
 
-		return new ResponseEntity<Object>(
-				"Access denied message here", new HttpHeaders(), HttpStatus.FORBIDDEN);
+		//return new ResponseEntity<Object>("Access denied message here", new HttpHeaders(), HttpStatus.FORBIDDEN);
+		RestApiException exception = new RestApiException(100, "Everything is BAD.");
+		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.FORBIDDEN);
 	}
 
 
