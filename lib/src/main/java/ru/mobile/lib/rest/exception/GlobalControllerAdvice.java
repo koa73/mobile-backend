@@ -20,10 +20,18 @@ public class GlobalControllerAdvice {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
+
+	@ExceptionHandler(RestApiException.class)
+	public ResponseEntity<RestApiException> handleException(RestApiException exception, HttpServletRequest request){
+		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+
+
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
 
-		log.error(ex.getMessage()+"----\n"+ex.getCause()+"-----\n"+ex.getClass().getCanonicalName());
+		log.error(ex.getClass().getCanonicalName());
 
 		RestApiException exception = new RestApiException(100, "Everything is BAD.", ex.getCause().toString());
 		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
