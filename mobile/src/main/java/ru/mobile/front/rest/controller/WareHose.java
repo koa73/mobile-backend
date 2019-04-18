@@ -13,6 +13,7 @@ import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
 import ru.mobile.front.service.WarehouseService;
 import ru.mobile.lib.rest.exception.RestApiException;
+import ru.mobile.lib.rest.exception.WebApiException;
 
 
 import javax.validation.constraints.Digits;
@@ -49,7 +50,7 @@ public class WareHose {
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<String> getTopicList(@Digits(integer=3, fraction=1, message = "invalid topic_id value.")
-                                                   @RequestParam("topic_id") int topic_id) throws RestApiException {
+                                                   @RequestParam("topic_id") int topic_id) throws WebApiException {
 
         warehouseService.getTopics(topic_id);
 
