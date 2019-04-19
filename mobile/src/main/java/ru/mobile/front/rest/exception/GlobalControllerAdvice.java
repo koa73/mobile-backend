@@ -60,6 +60,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<RestApiException> handleException(ConstraintViolationException e, HttpServletRequest req){
 
+		log.error(">>>>>> "+messages.get("error.100"));
 		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
 
 		Set<String> messages = new HashSet<>(constraintViolations.size());
@@ -68,7 +69,7 @@ public class GlobalControllerAdvice {
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
 
-		log.error(messages.isEmpty()+"");
+
 		RestApiException exception = new RestApiException(105,  messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}

@@ -34,10 +34,12 @@ public class RestApiException extends Exception {
         this.code = code;
         this.error = getErrorMessage(code);
         this.reason = reason;
+        messages.get("error.100");
     }
 
 
     public RestApiException(BindingResult result) {
+
 
         this.code = 101; // Bad JSON request values or format
         StringBuilder buffer=new StringBuilder();
@@ -91,11 +93,10 @@ public class RestApiException extends Exception {
 
     private String getErrorMessage(int code){
         try{
-
             return messages.get("error."+code);
         } catch (Exception e){
 
-            log.error(e+"");
+            log.error(">>>>>>>>>>>>>>>>>>>>  "+e+"");
             return "Unknown error message.";
         }
     }
