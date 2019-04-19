@@ -1,4 +1,4 @@
-package ru.mobile.web.rest.exception;
+package ru.mobile.web.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

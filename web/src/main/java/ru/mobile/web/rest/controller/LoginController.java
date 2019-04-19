@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.mobile.web.rest.exception.Messages;
+
+import ru.mobile.web.config.Messages;
 import ru.mobile.web.rest.exception.WebApiException;
 import ru.mobile.web.service.UserService;
 
