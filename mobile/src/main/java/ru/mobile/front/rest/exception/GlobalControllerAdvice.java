@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
-import ru.mobile.front.config.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
@@ -30,8 +29,6 @@ import java.util.stream.Collectors;
 public class GlobalControllerAdvice {
 
 
-	@Autowired
-	Messages messages;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 

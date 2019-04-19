@@ -34,7 +34,6 @@ public class RestApiException extends Exception {
         this.code = code;
         this.error = getErrorMessage(code);
         this.reason = reason;
-        messages.get("error.100");
     }
 
 
