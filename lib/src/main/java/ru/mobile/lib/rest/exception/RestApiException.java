@@ -51,12 +51,12 @@ public class RestApiException extends Exception {
     }
 
 
-    public int getStatus() {
+    public int getCode() {
         return code;
     }
 
-    public void setStatus(int status) {
-        this.code = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getError() {
