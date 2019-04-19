@@ -97,6 +97,9 @@ public class RestApiException extends Exception {
 
         } catch (Exception e){
 
+            log.error("------------>>> "+code+"\n"+e);
+
+
             return "Unknown error message.";
 
         }
