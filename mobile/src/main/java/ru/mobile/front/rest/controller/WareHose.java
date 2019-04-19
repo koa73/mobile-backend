@@ -30,7 +30,7 @@ public class WareHose {
     @Autowired
     WarehouseService warehouseService;
 
-    @RequestMapping(path = "/item")
+    @RequestMapping(path = "/items")
     //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id,
                                               Principal principal) throws RestApiException {
