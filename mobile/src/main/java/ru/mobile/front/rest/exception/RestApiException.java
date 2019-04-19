@@ -3,10 +3,10 @@ package ru.mobile.front.rest.exception;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import ru.mobile.front.config.Messages;
+import ru.mobile.lib.rest.exception.Messages;
+
 
 @JsonIgnoreProperties(value =
         {"cause", "stackTrace", "localizedMessage", "suppressed",  "message", "status", "causeReason"},
@@ -20,8 +20,7 @@ public class RestApiException extends Exception {
     private String error;
     private String reason;
 
-    @Autowired
-    Messages messages;
+    private Messages messages = new Messages();
 
     public RestApiException(int code){
         this.code = code;
@@ -93,14 +92,9 @@ public class RestApiException extends Exception {
     private String getErrorMessage(int code){
         try{
 
-            //return messages.get("error."+code);
-
-            return null;
+            return messages.get("error."+code);
 
         } catch (Exception e){
-
-            log.error("------------>>> "+code+"\n"+e);
-
 
             return "Unknown error message.";
 

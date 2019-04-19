@@ -19,8 +19,8 @@ public class RestApiException extends Exception {
     private String error;
     private String reason;
 
-    @Autowired
-    Messages messages;
+
+    private Messages messages = new Messages();
 
     public RestApiException(int code){
         this.code = code;
