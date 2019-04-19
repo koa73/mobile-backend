@@ -1,6 +1,6 @@
 spring:
   mvc:
-    locale: ru
+    locale: en
   application:
     name: mobile
   cloud:
