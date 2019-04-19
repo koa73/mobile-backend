@@ -1,4 +1,6 @@
 spring:
+  mvc:
+    locale: ru
   application:
     name: mobile
   cloud:

@@ -1,4 +1,4 @@
-package ru.mobile.lib.rest.exception;
+package ru.mobile.web.rest.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,16 +21,16 @@ public class WebApiException extends Exception {
     private String reason;
 
 
-    public WebApiException(){}
+    public WebApiException (){}
 
-    public WebApiException(int resultCode, String errMsg){
+    public WebApiException (int resultCode, String errMsg){
         this.resultCode = resultCode;
         this.errMsg = errMsg;
         this.reason = null;
     }
 
 
-    public WebApiException(int resultCode, String errMsg, String causeReason){
+    public WebApiException (int resultCode, String errMsg, String causeReason){
         this.resultCode = resultCode;
         this.errMsg = errMsg;
         this.reason = causeReason;

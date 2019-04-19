@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import ru.mobile.lib.rest.exception.GlobalControllerAdvice;
+import ru.mobile.lib.rest.exception.Messages;
 import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 
 
@@ -62,6 +63,10 @@ public class MobileApplication extends ResourceServerConfigurerAdapter {
         return new GlobalControllerAdvice();
     }
 
+    @Bean
+    public Messages messages(){
+        return new Messages();
+    }
 
     @Bean
     @ConfigurationProperties(prefix = "security.oauth2.client")
