@@ -6,17 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.mobile.front.rest.model.UserCreateReq;
-import ru.mobile.front.rest.view.UserCreateResp;
 import ru.mobile.front.service.WarehouseService;
 import ru.mobile.lib.rest.exception.RestApiException;
 import ru.mobile.lib.rest.validation.IntID;
 
 
-import javax.validation.constraints.Digits;
 import java.security.Principal;
 
 @Controller
@@ -36,21 +32,16 @@ public class WareHose {
 
     @RequestMapping(path = "/item")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public UserCreateResp getItemList(@RequestBody UserCreateReq request, Principal principal, BindingResult bindingResult)
-            throws RestApiException {
+    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id,
+                                              Principal principal) throws RestApiException {
 
-        if (bindingResult.hasErrors())
-            throw new RestApiException(bindingResult);
-
-
-
-        return null;
+        return ResponseEntity.ok(warehouseService.getItems(topic_id));
     }
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id)
-            throws RestApiException {
+    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id,
+                                               Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getTopics(topic_id));
     }

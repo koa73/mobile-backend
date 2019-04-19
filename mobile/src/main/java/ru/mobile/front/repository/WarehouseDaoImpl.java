@@ -30,4 +30,22 @@ public class WarehouseDaoImpl implements WarehouseDAO {
 
         return out.get("returnvalue").toString();
     }
+
+    @Override
+    public String getItems(int topic_id) {
+        Map<String, Object> out = template.simpleTemplateCall(
+                "get_items",
+                new SqlParameter[] {
+                        new SqlParameter("in_id", Types.SMALLINT),
+                },
+                new MapSqlParameterSource()
+                        .addValue("in_id", topic_id));
+
+        return out.get("returnvalue").toString();
+    }
+
+    @Override
+    public String getItemInfo(int item_id) {
+        return null;
+    }
 }
