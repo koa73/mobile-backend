@@ -60,7 +60,6 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<RestApiException> handleException(ConstraintViolationException e, HttpServletRequest req){
 
-		log.error(">>>>>> "+messages.get("error.100"));
 		Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
 
 		Set<String> messages = new HashSet<>(constraintViolations.size());
