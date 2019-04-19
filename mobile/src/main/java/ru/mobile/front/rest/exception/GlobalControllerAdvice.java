@@ -3,6 +3,7 @@ package ru.mobile.front.rest.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @Component
 public class GlobalControllerAdvice {
-
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -62,6 +62,7 @@ public class GlobalControllerAdvice {
 				.map(constraintViolation -> String.format("Received value '%s' %s",
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
+
 		RestApiException exception = new RestApiException(105,  messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}

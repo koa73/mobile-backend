@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import ru.mobile.front.config.Messages;
 
 @JsonIgnoreProperties(value =
         {"cause", "stackTrace", "localizedMessage", "suppressed",  "message", "status", "causeReason"},
