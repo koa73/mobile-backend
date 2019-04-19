@@ -1,4 +1,4 @@
-package ru.mobile.front.rest.exception;
+package ru.mobile.lib.rest.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package ru.mobile.front.service;
 
 
-import ru.mobile.front.rest.exception.RestApiException;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 
 public interface WarehouseService {

@@ -1,4 +1,4 @@
-package ru.mobile.front.rest.exception;
+package ru.mobile.lib.rest.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;

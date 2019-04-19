@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
-import ru.mobile.front.rest.exception.RestApiException;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 
 import java.security.Principal;

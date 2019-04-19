@@ -21,8 +21,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
-import ru.mobile.front.rest.exception.GlobalControllerAdvice;
-import ru.mobile.front.rest.exception.Messages;
 import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 
 
@@ -41,7 +39,7 @@ import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 @EnableConfigurationProperties
 @EnableAsync
 @Configuration
-@ComponentScan({"ru.mobile.front", "ru.mobile.lib.repository"})
+@ComponentScan({"ru.mobile.front", "ru.mobile.lib.repository", "ru.mobile.lib.rest.exception"})
 public class MobileApplication extends ResourceServerConfigurerAdapter {
 
     @Autowired

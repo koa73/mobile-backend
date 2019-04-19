@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.mobile.lib.client.GoogleCertClient;
-import ru.mobile.front.rest.exception.RestApiException;
+import ru.mobile.lib.rest.exception.RestApiException;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -52,7 +53,7 @@ public class JWTParserImpl implements JWTParser {
     }
 
     @Override
-    public boolean phoneVerify(int cmdCode, String phone, String idToken) throws RestApiException{
+    public boolean phoneVerify(int cmdCode, String phone, String idToken) throws RestApiException {
 
         try {
             final Claims claims = Jwts.parser()
