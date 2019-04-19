@@ -91,7 +91,15 @@ public class RestApiException extends Exception {
     }
 
     private String getErrorMessage(int code){
-        return messages.get("error."+code);
+        try{
+
+            return messages.get("error."+code);
+
+        } catch (Exception e){
+
+            return "Unknown error message.";
+
+        }
     }
 
 }

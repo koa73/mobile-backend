@@ -22,7 +22,7 @@ public class Messages {
 
     private MessageSourceAccessor accessor;
 
-    @PostConstruct
+    //@PostConstruct
     private void init() {
         accessor = new MessageSourceAccessor(messageSource, new Locale(defaultLocale));
     }
