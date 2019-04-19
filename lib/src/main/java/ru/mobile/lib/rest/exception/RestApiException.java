@@ -8,27 +8,27 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 @JsonIgnoreProperties(value =
-        {"cause", "stackTrace", "localizedMessage", "suppressed", "code", "message", "status", "causeReason"},
+        {"cause", "stackTrace", "localizedMessage", "suppressed",  "message", "status", "causeReason"},
         ignoreUnknown=true)
 
 public class RestApiException extends Exception {
 
     //private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private int status;
+    private int code;
     private String error;
     private String reason;
 
 
     public RestApiException(int code, String message){
-        this.status = code;
+        this.code = code;
         this.error = message;
         this.reason = null;
     }
 
 
     public RestApiException(int code, String message, String reason){
-        this.status = code;
+        this.code = code;
         this.error = message;
         this.reason = reason;
     }
@@ -36,7 +36,7 @@ public class RestApiException extends Exception {
 
     public RestApiException(BindingResult result) {
 
-        this.status = 101; // Bad JSON request values or format
+        this.code = 101; // Bad JSON request values or format
         StringBuilder buffer=new StringBuilder();
         boolean isFirst=true;
         for(ObjectError error : result.getAllErrors()) {
@@ -52,11 +52,11 @@ public class RestApiException extends Exception {
 
 
     public int getStatus() {
-        return status;
+        return code;
     }
 
     public void setStatus(int status) {
-        this.status = status;
+        this.code = status;
     }
 
     public String getError() {
@@ -79,7 +79,7 @@ public class RestApiException extends Exception {
     public String toString() {
 
         return "{"+
-                "\"status\":\""+status+
+                "\"code\":\""+code+
                 "\", \"error\":\""+error +
                 "\", \"reason\":\""+reason +
                 "\"}";
