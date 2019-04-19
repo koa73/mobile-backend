@@ -1,6 +1,8 @@
 package ru.mobile.front.service;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mobile.front.config.Messages;
@@ -17,6 +19,8 @@ public class WarehoseServiceImpl implements WarehouseService {
     @Autowired
     Messages messages;
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Override
     public String getTopics(int topic_id){
 
@@ -26,7 +30,7 @@ public class WarehoseServiceImpl implements WarehouseService {
     @Override
     public String getItems(int topic_id)throws RestApiException {
 
-        messages.get("error.105");
+        log.error(">>>>>>          "+messages.get("error.105"));
         return repository.getItems(topic_id);
     }
 }

@@ -16,8 +16,25 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
  */
 
 @Configuration
-public class I18nConfiguration {
+public class I18nConfiguration extends WebMvcConfigurerAdapter {
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new SessionLocaleResolver();
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new
+                LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
 
     @Bean
     public MessageSource messageSource() {
