@@ -22,7 +22,7 @@ public class WarehoseServiceImpl implements WarehouseService {
     }
 
     @Override
-    public String getItems(int item_id)throws RestApiException {
-        return null;
+    public String getItems(int topic_id)throws RestApiException {
+        return repository.getItems(topic_id);
     }
 }
