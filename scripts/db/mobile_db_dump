@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.1
+-- Dumped from database version 9.6.12
 -- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
@@ -28,7 +28,114 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
 SET search_path = public, pg_catalog;
+
+--
+-- Name: get_items(smallint); Type: FUNCTION; Schema: public; Owner: mobileAdmin
+--
+
+CREATE FUNCTION get_items(in_topic_id smallint) RETURNS character varying
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+	out varchar;
+    url CONSTANT VARCHAR(32) := 'https://web.phone4pay.ru/images/';
+
+BEGIN
+
+	IF in_topic_id = 0 THEN
+
+   		out = (SELECT json_agg(json_build_object('id', t.id, 'name', t.name , 
+        'desc', t.description, 'volume', t.volume, 'cost', t.cost, 'img', 
+        url || t.image)) 
+   		FROM public.items AS t WHERE t.count >0);
+
+	ELSE
+
+   		out = (SELECT json_agg(json_build_object('id', t.id, 'name', t.name , 
+        'desc', t.description, 'volume', t.volume, 'cost', t.cost, 'img', 
+        url || t.image)) 
+   		FROM public.items AS t WHERE t.topic_id = in_topic_id AND t.coumt > 0);
+
+	END IF;
+    
+    IF out is NULL  THEN 
+   		raise exception 'topic_id % search return 0. errCode: 102', in_topic_id 
+   		USING ERRCODE = '01000';
+	END IF;
+	
+	RETURN '{"items":' || out || '}';
+END;
+$$;
+
+
+ALTER FUNCTION public.get_items(in_topic_id smallint) OWNER TO "mobileAdmin";
+
+--
+-- Name: get_topic(smallint); Type: FUNCTION; Schema: public; Owner: mobileAdmin
+--
+
+CREATE FUNCTION get_topic(in_id smallint) RETURNS character varying
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+
+out varchar;
+
+BEGIN
+
+IF in_id = 0 THEN
+
+   out = (SELECT json_agg(json_build_object('id', t.id, 'name', t.name )) 
+   FROM public.topics AS t);
+
+ELSE
+
+   out = (SELECT json_agg(json_build_object('id', t.id, 'name', t.name )) 
+   FROM public.topics AS t WHERE t.id = in_id); 
+
+END IF;
+
+IF out is NULL  THEN 
+   raise exception 'topic_id % not found. errCode: 102', in_id 
+   USING ERRCODE = '01000';
+END IF;
+  
+RETURN '{"topics":' || out || '}';
+
+END;
+$$;
+
+
+ALTER FUNCTION public.get_topic(in_id smallint) OWNER TO "mobileAdmin";
 
 --
 -- Name: get_user_info(character varying); Type: FUNCTION; Schema: public; Owner: mobileAdmin
@@ -50,9 +157,74 @@ $$;
 
 ALTER FUNCTION public.get_user_info(in_phone character varying, OUT email character varying, OUT state character varying, OUT registered character varying, OUT lastlogin character varying) OWNER TO "mobileAdmin";
 
+--
+-- Name: uniq(anyarray); Type: FUNCTION; Schema: public; Owner: mobileAdmin
+--
+
+CREATE FUNCTION uniq(anyarray) RETURNS anyarray
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+select array(select distinct $1[i] from
+generate_series(array_lower($1,1), array_upper($1,1)) g(i));
+$_$;
+
+
+ALTER FUNCTION public.uniq(anyarray) OWNER TO "mobileAdmin";
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: items; Type: TABLE; Schema: public; Owner: mobileAdmin
+--
+
+CREATE TABLE items (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    topic_id smallint NOT NULL,
+    name character varying(30),
+    description character varying(150),
+    volume character varying(10),
+    cost money,
+    count bigint,
+    image character varying(18)
+);
+
+
+ALTER TABLE items OWNER TO "mobileAdmin";
+
+--
+-- Name: topics; Type: TABLE; Schema: public; Owner: mobileAdmin
+--
+
+CREATE TABLE topics (
+    id smallint NOT NULL,
+    name character varying(30)
+);
+
+
+ALTER TABLE topics OWNER TO "mobileAdmin";
+
+--
+-- Name: topics_id_seq; Type: SEQUENCE; Schema: public; Owner: mobileAdmin
+--
+
+CREATE SEQUENCE topics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE topics_id_seq OWNER TO "mobileAdmin";
+
+--
+-- Name: topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mobileAdmin
+--
+
+ALTER SEQUENCE topics_id_seq OWNED BY topics.id;
+
 
 --
 -- Name: users; Type: TABLE; Schema: public; Owner: mobileAdmin
@@ -72,6 +244,43 @@ CREATE TABLE users (
 
 
 ALTER TABLE users OWNER TO "mobileAdmin";
+
+--
+-- Name: topics id; Type: DEFAULT; Schema: public; Owner: mobileAdmin
+--
+
+ALTER TABLE ONLY topics ALTER COLUMN id SET DEFAULT nextval('topics_id_seq'::regclass);
+
+
+--
+-- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: mobileAdmin
+--
+
+COPY items (id, topic_id, name, description, volume, cost, count, image) FROM stdin;
+fdb9dbe0-b8b0-44a5-b350-411785876579	1	Holyland	Лосьон для растворения закрытых комедонов / Super Lotion LOTIONS	250	500.00 руб	5	img_1844_1.jpg
+b691cb47-1353-4bf3-87c8-4e00c4574f7a	3	KAARAL	Маска реконструирующая с пчелиным маточным молочком для волос / Royal Jelly Cream 	500	147.00 руб	2	img_1187.jpg
+c9de6e2d-0f64-48e2-9354-403fbc3efc72	2	Holyland	Маска сокращающая специальная / Special Mask MASKS	70	150.00 руб	10	special_mask.jpg
+\.
+
+
+--
+-- Data for Name: topics; Type: TABLE DATA; Schema: public; Owner: mobileAdmin
+--
+
+COPY topics (id, name) FROM stdin;
+1	Анестезия
+2	Косметика для тела
+3	Косметика для лица
+4	Косметика для рук
+\.
+
+
+--
+-- Name: topics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mobileAdmin
+--
+
+SELECT pg_catalog.setval('topics_id_seq', 4, true);
+
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: mobileAdmin
