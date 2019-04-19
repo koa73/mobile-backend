@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mobile.front.service.WarehouseService;
-import ru.mobile.lib.rest.exception.RestApiException;
 import ru.mobile.lib.rest.validation.IntID;
 
 

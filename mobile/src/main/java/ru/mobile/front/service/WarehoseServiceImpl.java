@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mobile.front.config.Messages;
 import ru.mobile.front.repository.WarehouseDAO;
-import ru.mobile.lib.rest.exception.RestApiException;
 
 
 @Service

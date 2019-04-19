@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.mobile.lib.rest.exception.RestApiException;
 
 
 import javax.crypto.Cipher;
@@ -26,7 +25,7 @@ public class EncryptionServiceImpl implements EncryptionService{
     private String strKey;
 
     @Override
-    public String encryptValue(String value, String userName) throws RestApiException {
+    public String encryptValue(String value, String userName) {
 
         String strData="";
         try {
@@ -46,7 +45,7 @@ public class EncryptionServiceImpl implements EncryptionService{
     }
 
     @Override
-    public String decryptValue(String encrypted) throws RestApiException{
+    public String decryptValue(String encrypted){
 
         String decrypted = null;
 

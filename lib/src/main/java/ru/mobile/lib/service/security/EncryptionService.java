@@ -9,6 +9,6 @@ import ru.mobile.lib.rest.exception.RestApiException;
  */
 public interface EncryptionService {
 
-    String decryptValue(String encrypted)throws RestApiException;
-    String encryptValue(String value, String userName) throws RestApiException;
+    String decryptValue(String encrypted);
+    String encryptValue(String value, String userName);
 }

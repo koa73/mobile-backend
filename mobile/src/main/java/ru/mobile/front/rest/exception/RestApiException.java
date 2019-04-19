@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import ru.mobile.lib.rest.exception.Messages;
 
 
 @JsonIgnoreProperties(value =
@@ -20,23 +19,21 @@ public class RestApiException extends Exception {
     private String error;
     private String reason;
 
-    private Messages messages = new Messages();
-
-    public RestApiException(int code){
+    public RestApiException(int code, String error){
         this.code = code;
-        this.error = getErrorMessage(code);
+        this.error = error;
         this.reason = null;
     }
 
 
-    public RestApiException(int code,  String reason){
+    public RestApiException(int code, String error, String reason){
         this.code = code;
-        this.error = getErrorMessage(code);
+        this.error = error;
         this.reason = reason;
     }
 
 
-    public RestApiException(BindingResult result) {
+    public RestApiException(BindingResult result, String message) {
 
 
         this.code = 101; // Bad JSON request values or format
@@ -50,7 +47,7 @@ public class RestApiException extends Exception {
             }
             buffer.append(error.getDefaultMessage());
         }
-        this.error = getErrorMessage(101);
+        this.error = message;
         this.reason = "Received wrong value(s) : "+buffer.toString()+" ;";
     }
 
@@ -87,18 +84,6 @@ public class RestApiException extends Exception {
                 "\", \"error\":\""+error +
                 "\", \"reason\":\""+reason +
                 "\"}";
-    }
-
-    private String getErrorMessage(int code){
-        try{
-
-            return messages.get("error."+code);
-
-        } catch (Exception e){
-
-            return "Unknown error message.";
-
-        }
     }
 
 }

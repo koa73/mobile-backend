@@ -3,6 +3,7 @@ package ru.mobile.front.rest.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
+import ru.mobile.front.config.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
 public class GlobalControllerAdvice {
 
 
+	@Autowired
+	Messages messages;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -49,7 +53,7 @@ public class GlobalControllerAdvice {
 			errMsg = e.getCause().getLocalizedMessage().replaceAll(".*:\\s(.*)\\serrCode(.*\n.*)*", "$1");
 		}
 
-		RestApiException exception = new RestApiException(resultCode, "SQL request error.");
+		RestApiException exception = new RestApiException(resultCode, getErrorMessage(resultCode), "SQL request error.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -65,13 +69,13 @@ public class GlobalControllerAdvice {
 				.collect(Collectors.toList()));
 
 
-		RestApiException exception = new RestApiException(105,  messages+"");
+		RestApiException exception = new RestApiException(105,  getErrorMessage(105), messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ResponseEntity<RestApiException> handleException(HttpMessageNotReadableException e, HttpServletRequest req){
-		RestApiException exception = new RestApiException(101, "Wrong json request format.");
+		RestApiException exception = new RestApiException(101, getErrorMessage(105), "Wrong json request format.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -80,7 +84,7 @@ public class GlobalControllerAdvice {
 
 		log.error(ex.getClass().getCanonicalName());
 
-		RestApiException exception = new RestApiException(100, ex.getCause().toString());
+		RestApiException exception = new RestApiException(100, getErrorMessage(100), ex.getCause().toString());
 		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -95,6 +99,17 @@ public class GlobalControllerAdvice {
 
 			binder.bind(new MutablePropertyValues(Collections.singletonMap(
 					"phone", request.getAttribute("phone"))));
+		}
+	}
+
+	private String getErrorMessage(int code){
+		try{
+
+			return messages.get("error."+code);
+		} catch (Exception e){
+
+			log.error(e+"");
+			return "Unknown error message.";
 		}
 	}
 }
