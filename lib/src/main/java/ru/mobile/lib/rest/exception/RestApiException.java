@@ -15,28 +15,28 @@ public class RestApiException extends Exception {
 
     //private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private int resultCode;
-    private String errMsg;
+    private int status;
+    private String error;
     private String reason;
 
 
     public RestApiException(int resultCode, String errMsg){
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
+        this.status = resultCode;
+        this.error = errMsg;
         this.reason = null;
     }
 
 
     public RestApiException(int resultCode, String errMsg, String causeReason){
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
+        this.status = resultCode;
+        this.error = errMsg;
         this.reason = causeReason;
     }
 
 
     public RestApiException(BindingResult result) {
 
-        this.resultCode = 101; // Bad JSON request values or format
+        this.status = 101; // Bad JSON request values or format
         StringBuilder buffer=new StringBuilder();
         boolean isFirst=true;
         for(ObjectError error : result.getAllErrors()) {
@@ -47,24 +47,24 @@ public class RestApiException extends Exception {
             }
             buffer.append(error.getDefaultMessage());
         }
-        this.errMsg="Received wrong value(s) : "+buffer.toString()+" ;";
+        this.error="Received wrong value(s) : "+buffer.toString()+" ;";
     }
 
 
     public int getResultCode() {
-        return resultCode;
+        return status;
     }
 
     public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
+        this.status = resultCode;
     }
 
     public String getErrMsg() {
-        return errMsg;
+        return error;
     }
 
     public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
+        this.error = errMsg;
     }
 
     public String getReason() {
@@ -79,9 +79,9 @@ public class RestApiException extends Exception {
     public String toString() {
 
         return "{"+
-                "\"status\":\""+resultCode+
-                "\", \"message\":\""+errMsg +
-                "\", \"cause\":\""+reason +
+                "\"status\":\""+status+
+                "\", \"error\":\""+error +
+                "\", \"reason\":\""+reason +
                 "\"}";
     }
 
