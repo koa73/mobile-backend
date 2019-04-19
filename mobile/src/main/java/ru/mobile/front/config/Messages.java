@@ -32,6 +32,7 @@ public class Messages {
     }
 
     public String get(String code, String locale) {
+
         if (locale == null)
             locale = defaultLocale;
         accessor = new MessageSourceAccessor(messageSource, new Locale(locale));

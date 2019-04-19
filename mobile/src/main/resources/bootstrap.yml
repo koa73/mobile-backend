@@ -9,13 +9,10 @@ spring:
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD:}
       username: user
-  messages:
-    encoding: UTF-8
-    basename: "classpath:/i18n/messages"
 
 logging:
   level:
-    ru.mobile.front.config.Messages: DEBUG
-    ru.mobile.front.config.I18nConfiguration: DEBUG
+    ru.mobile.front.rest.exception.RestApiException: DEBUG
+    //ru.mobile.front.config.I18nConfiguration: DEBUG
 
 
