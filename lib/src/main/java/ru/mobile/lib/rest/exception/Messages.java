@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.Locale;
 
 
-@Component
+
 public class Messages {
 
     @Value("${spring.mvc.locale}")

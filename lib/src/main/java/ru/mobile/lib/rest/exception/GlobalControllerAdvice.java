@@ -25,7 +25,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-@Component
 public class GlobalControllerAdvice {
 
 
