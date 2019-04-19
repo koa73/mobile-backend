@@ -36,10 +36,10 @@ public class WarehouseDaoImpl implements WarehouseDAO {
         Map<String, Object> out = template.simpleTemplateCall(
                 "get_items",
                 new SqlParameter[] {
-                        new SqlParameter("in_id", Types.SMALLINT),
+                        new SqlParameter("in_topic_id", Types.SMALLINT),
                 },
                 new MapSqlParameterSource()
-                        .addValue("in_id", topic_id));
+                        .addValue("in_topic_id", topic_id));
 
         return out.get("returnvalue").toString();
     }
