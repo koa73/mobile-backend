@@ -11,7 +11,7 @@ spring:
       username: user
   messages:
     encoding: UTF-8
-    basename: messages
+    basename: "classpath:/i18n/messages"
 
 logging:
   level:
