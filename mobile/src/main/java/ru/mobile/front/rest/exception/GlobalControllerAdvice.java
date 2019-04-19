@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
+import ru.mobile.front.config.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
@@ -27,6 +28,10 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @Component
 public class GlobalControllerAdvice {
+
+
+	@Autowired
+	Messages messages;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -62,6 +67,7 @@ public class GlobalControllerAdvice {
 				.map(constraintViolation -> String.format("Received value '%s' %s",
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
+
 
 		RestApiException exception = new RestApiException(105,  messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);

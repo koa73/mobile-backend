@@ -29,9 +29,6 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    Messages messages;
-
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/login")

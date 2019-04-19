@@ -41,6 +41,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map handle(MethodArgumentNotValidException exception) {
 
+
         return error(exception.getBindingResult().getFieldErrors()
                 .stream()
                 .map(FieldError::getDefaultMessage)
@@ -91,7 +92,6 @@ public class GlobalExceptionHandler {
         if (throwable instanceof ConstraintViolationException){
             errorMessage = ".request";
         }
-
 
         log.error("----------------------------->>>>" + throwable.getCause()+" , " +  throwable.getMessage());
         model.addAttribute("prefix", errorMessage);
