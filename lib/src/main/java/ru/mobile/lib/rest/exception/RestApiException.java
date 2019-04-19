@@ -1,6 +1,8 @@
 package ru.mobile.lib.rest.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -11,7 +13,7 @@ import org.springframework.validation.ObjectError;
 
 public class RestApiException extends Exception {
 
-    //private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private int code;
     private String error;
@@ -88,8 +90,11 @@ public class RestApiException extends Exception {
 
     private String getErrorMessage(int code){
         try{
+
             return messages.get("error."+code);
         } catch (NullPointerException e){
+
+            log.error(e.getMessage()+"\n"+e.getCause());
             return "Unknown error message.";
         }
     }
