@@ -92,9 +92,9 @@ public class RestApiException extends Exception {
         try{
 
             return messages.get("error."+code);
-        } catch (NullPointerException e){
+        } catch (Exception e){
 
-            log.error(e.getMessage()+"\n"+e.getCause());
+            log.error(e+"");
             return "Unknown error message.";
         }
     }
