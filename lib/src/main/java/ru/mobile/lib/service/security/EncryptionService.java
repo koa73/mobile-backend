@@ -1,6 +1,6 @@
 package ru.mobile.lib.service.security;
 
-import ru.mobile.lib.rest.exception.RestApiException;
+import ru.mobile.front.rest.exception.RestApiException;
 
 
 /**

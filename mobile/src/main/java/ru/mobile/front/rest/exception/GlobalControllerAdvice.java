@@ -1,14 +1,14 @@
-package ru.mobile.lib.rest.exception;
+package ru.mobile.front.rest.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.MutablePropertyValues;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,10 +24,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
+@Component
 public class GlobalControllerAdvice {
 
-	@Autowired
-	Messages messages;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -49,7 +48,7 @@ public class GlobalControllerAdvice {
 			errMsg = e.getCause().getLocalizedMessage().replaceAll(".*:\\s(.*)\\serrCode(.*\n.*)*", "$1");
 		}
 
-		RestApiException exception = new RestApiException(resultCode, errMsg, "SQL request error.");
+		RestApiException exception = new RestApiException(resultCode, "SQL request error.");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -63,7 +62,7 @@ public class GlobalControllerAdvice {
 				.map(constraintViolation -> String.format("Received value '%s' %s",
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
-		RestApiException exception = new RestApiException(105, "Wrong request value.", messages+"");
+		RestApiException exception = new RestApiException(105,  messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -78,7 +77,7 @@ public class GlobalControllerAdvice {
 
 		log.error(ex.getClass().getCanonicalName());
 
-		RestApiException exception = new RestApiException(100, "Everything is BAD.", ex.getCause().toString());
+		RestApiException exception = new RestApiException(100, ex.getCause().toString());
 		return new ResponseEntity<Object>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
 

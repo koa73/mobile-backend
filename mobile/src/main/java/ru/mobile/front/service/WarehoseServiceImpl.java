@@ -4,9 +4,7 @@ package ru.mobile.front.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mobile.front.repository.WarehouseDAO;
-import ru.mobile.lib.rest.exception.RestApiException;
-
-import java.util.List;
+import ru.mobile.front.rest.exception.RestApiException;
 
 
 @Service

@@ -1,9 +1,7 @@
-package ru.mobile.lib.rest.exception;
+package ru.mobile.front.rest.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
@@ -19,17 +17,19 @@ public class RestApiException extends Exception {
     private String error;
     private String reason;
 
+    @Autowired
+    Messages messages;
 
-    public RestApiException(int code, String message){
+    public RestApiException(int code){
         this.code = code;
-        this.error = message;
+        this.error = getErrorMessage(code);
         this.reason = null;
     }
 
 
-    public RestApiException(int code, String message, String reason){
+    public RestApiException(int code,  String reason){
         this.code = code;
-        this.error = message;
+        this.error = getErrorMessage(code);
         this.reason = reason;
     }
 
@@ -47,7 +47,8 @@ public class RestApiException extends Exception {
             }
             buffer.append(error.getDefaultMessage());
         }
-        this.error="Received wrong value(s) : "+buffer.toString()+" ;";
+        this.error = getErrorMessage(101);
+        this.reason = "Received wrong value(s) : "+buffer.toString()+" ;";
     }
 
 
@@ -83,6 +84,14 @@ public class RestApiException extends Exception {
                 "\", \"error\":\""+error +
                 "\", \"reason\":\""+reason +
                 "\"}";
+    }
+
+    private String getErrorMessage(int code){
+        try{
+            return messages.get("error."+code);
+        } catch (NullPointerException e){
+            return "Unknown error message.";
+        }
     }
 
 }
