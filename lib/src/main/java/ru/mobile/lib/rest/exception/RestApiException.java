@@ -20,17 +20,17 @@ public class RestApiException extends Exception {
     private String reason;
 
 
-    public RestApiException(int resultCode, String errMsg){
-        this.status = resultCode;
-        this.error = errMsg;
+    public RestApiException(int code, String message){
+        this.status = code;
+        this.error = message;
         this.reason = null;
     }
 
 
-    public RestApiException(int resultCode, String errMsg, String causeReason){
-        this.status = resultCode;
-        this.error = errMsg;
-        this.reason = causeReason;
+    public RestApiException(int code, String message, String reason){
+        this.status = code;
+        this.error = message;
+        this.reason = reason;
     }
 
 
