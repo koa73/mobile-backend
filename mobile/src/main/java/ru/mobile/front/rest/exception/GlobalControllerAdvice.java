@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
 import ru.mobile.front.config.Messages;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;

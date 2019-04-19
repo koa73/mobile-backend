@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mobile.front.rest.model.UserCreateReq;
 import ru.mobile.front.rest.view.UserCreateResp;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 
 import java.security.Principal;
@@ -31,10 +32,9 @@ public class UserProfile {
     //@PreAuthorize("hasRole('ROLE_APP')")
     public UserCreateResp createUser(@RequestBody UserCreateReq request, Principal principal, BindingResult bindingResult)
             throws RestApiException {
-        log.error("HHHHHHHHHHHHHHHHHHHHHHHHH");
 
         if (bindingResult.hasErrors())
-            throw new RestApiException(bindingResult);
+            throw new RestApiException(bindingResult, "");
 
         log.error(principal.getName());
 
