@@ -93,7 +93,9 @@ public class RestApiException extends Exception {
     private String getErrorMessage(int code){
         try{
 
-            return messages.get("error."+code);
+            //return messages.get("error."+code);
+            messages.toString();
+            return null;
 
         } catch (Exception e){
 
