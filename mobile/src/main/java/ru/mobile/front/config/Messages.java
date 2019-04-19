@@ -19,8 +19,17 @@ public class Messages {
     @Value("${spring.mvc.locale}")
     private String defaultLocale;
 
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:/i18n/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setFallbackToSystemLocale(true);
+        return messageSource;
+    }
+
     @Autowired
-    private MessageSource messageSource;
+    MessageSource messageSource;
 
     private MessageSourceAccessor accessor;
 
@@ -38,14 +47,5 @@ public class Messages {
             locale = defaultLocale;
         accessor = new MessageSourceAccessor(messageSource, new Locale(locale));
         return accessor.getMessage(code);
-    }
-
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:/i18n/messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setFallbackToSystemLocale(true);
-        return messageSource;
     }
 }
