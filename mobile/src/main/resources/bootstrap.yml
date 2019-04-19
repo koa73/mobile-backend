@@ -12,4 +12,7 @@ spring:
 
 logging:
   level:
-    #ru.phone4pay.paymentgw.client.ProcessingClientTest: DEBUG
+    ru.mobile.front.config.Messages: DEBUG
+    ru.mobile.front.config.I18nConfiguration: DEBUG
+
+
