@@ -26,7 +26,7 @@ public class WarehoseServiceImpl implements WarehouseService {
     @Override
     public String getItems(int topic_id)throws RestApiException {
 
-        messages.get("105");
+        messages.get("error.105");
         return repository.getItems(topic_id);
     }
 }
