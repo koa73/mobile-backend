@@ -69,7 +69,7 @@ public class GlobalControllerAdvice {
 						constraintViolation.getInvalidValue(), constraintViolation.getMessage()))
 				.collect(Collectors.toList()));
 
-
+		log.error(">>>>>>> "+ req.getLocale().getDisplayLanguage());
 		RestApiException exception = new RestApiException(105,  getErrorMessage(105), messages+"");
 		return new ResponseEntity<RestApiException>(exception, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
