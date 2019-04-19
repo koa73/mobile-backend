@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.mobile.lib.client.GoogleCertClient;
+import ru.mobile.lib.rest.exception.RestApiException;
 
 
 import java.io.ByteArrayInputStream;
@@ -70,7 +71,7 @@ public class JWTParserImpl implements JWTParser {
                             return null;
                         }
 
-            }).parseClaimsJws(idToken).getBody();
+                    }).parseClaimsJws(idToken).getBody();
 
             if (claims.getSubject() == null){
 
@@ -132,3 +133,4 @@ public class JWTParserImpl implements JWTParser {
         }
     }
 }
+

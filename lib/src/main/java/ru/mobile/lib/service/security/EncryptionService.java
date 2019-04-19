@@ -1,8 +1,6 @@
 package ru.mobile.lib.service.security;
 
 
-import ru.mobile.lib.rest.exception.RestApiException;
-
 /**
  *
  * Created by OAKutsenko on 31.08.2017.
