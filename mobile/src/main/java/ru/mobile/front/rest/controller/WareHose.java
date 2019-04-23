@@ -25,17 +25,17 @@ public class WareHose {
 
     @RequestMapping(path = "/goods/items", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getItemList(@PathVariable int topic_id,
+    public ResponseEntity<String> getItemList(@PathVariable String topic_id,
                                               Principal principal) throws RestApiException {
 
-        return ResponseEntity.ok(warehouseService.getItems(topic_id));
+        return ResponseEntity.ok(warehouseService.getItems(Integer.parseInt(topic_id)));
     }
 
     @RequestMapping(path = "/goods/topic", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@PathVariable int topic_id,
+    public ResponseEntity<String> getTopicList(@PathVariable String topic_id,
                                                Principal principal) throws RestApiException {
 
-        return ResponseEntity.ok(warehouseService.getTopics(topic_id));
+        return ResponseEntity.ok(warehouseService.getTopics(Integer.parseInt(topic_id)));
     }
 }
