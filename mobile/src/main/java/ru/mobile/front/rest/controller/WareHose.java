@@ -23,17 +23,17 @@ public class WareHose {
     @Autowired
     WarehouseService warehouseService;
 
-    @RequestMapping(path = "/goods/items?topic_id={id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/goods/items", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @PathVariable int id,
+    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int id,
                                               Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getItems(id));
     }
 
-    @RequestMapping(path = "/goods/topic?topic_id={id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/goods/topic", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @PathVariable int id,
+    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int id,
                                                Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getTopics(id));
