@@ -18,10 +18,7 @@ import java.security.Principal;
 @Controller
 @Validated
 @RequestMapping(path = "/goods",
-        method = RequestMethod.GET,
-        //headers = {"Content-Type=application/json"},
-        consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+        method = RequestMethod.GET
 )
 public class WareHose {
 
