@@ -3,7 +3,6 @@ package ru.mobile.front.rest.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -17,9 +16,6 @@ import java.security.Principal;
 
 @Controller
 @Validated
-@RequestMapping(path = "/goods",
-        method = RequestMethod.GET
-)
 public class WareHose {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -27,17 +23,17 @@ public class WareHose {
     @Autowired
     WarehouseService warehouseService;
 
-    @RequestMapping(path = "/items")
+    @RequestMapping(path = "/goods/items", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @PathVariable int topic_id,
+    public ResponseEntity<String> getItemList(@PathVariable int topic_id,
                                               Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getItems(topic_id));
     }
 
-    @RequestMapping(path = "/topic")
+    @RequestMapping(path = "/goods/topic", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @PathVariable int topic_id,
+    public ResponseEntity<String> getTopicList(@PathVariable int topic_id,
                                                Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getTopics(topic_id));
