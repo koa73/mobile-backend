@@ -18,7 +18,7 @@ import java.security.Principal;
 @Controller
 @Validated
 @RequestMapping(path = "/goods",
-        method = RequestMethod.POST,
+        method = RequestMethod.GET,
         headers = {"Content-Type=application/json"},
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
@@ -32,7 +32,7 @@ public class WareHose {
 
     @RequestMapping(path = "/items")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id,
+    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @PathVariable int topic_id,
                                               Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getItems(topic_id));
@@ -40,7 +40,7 @@ public class WareHose {
 
     @RequestMapping(path = "/topic")
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int topic_id,
+    public ResponseEntity<String> getTopicList(@IntID(min = 0, max = 3) @PathVariable int topic_id,
                                                Principal principal) throws RestApiException {
 
         return ResponseEntity.ok(warehouseService.getTopics(topic_id));
