@@ -19,7 +19,7 @@ import java.security.Principal;
 @Validated
 @RequestMapping(path = "/goods",
         method = RequestMethod.GET,
-        headers = {"Content-Type=application/json"},
+        //headers = {"Content-Type=application/json"},
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
