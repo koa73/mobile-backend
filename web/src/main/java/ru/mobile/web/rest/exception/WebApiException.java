@@ -23,37 +23,41 @@ public class WebApiException extends Exception {
 
     public WebApiException (){}
 
-    public WebApiException (int resultCode, String errMsg){
-        this.code = resultCode;
-        this.error = errMsg;
+    public WebApiException (int code, String error){
+        this.code = code;
+        this.error = error;
         this.error_description = null;
     }
 
 
-    public WebApiException (int resultCode, String errMsg, String causeReason){
-        this.code = resultCode;
-        this.error = errMsg;
-        this.error_description = causeReason;
+    public WebApiException (int code, String error, String error_description){
+        this.code = code;
+        this.error = error;
+        this.error_description = error_description;
     }
 
-    public String getCauseReason() {
-        return error_description;
-    }
-
-    public String getErrMsg() {
-        return error;
-    }
-
-    public void setErrMsg(String errMsg) {
-        this.error = errMsg;
-    }
-
-    public int getResultCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setReason(String causeReason) {
-        this.error_description = causeReason;
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getError_description() {
+        return error_description;
+    }
+
+    public void setError_description(String error_description) {
+        this.error_description = error_description;
     }
 
     @Override
