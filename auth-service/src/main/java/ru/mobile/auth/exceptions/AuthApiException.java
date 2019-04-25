@@ -4,48 +4,62 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.http.HttpStatus;
 
 
-@JsonIgnoreProperties(value={"cause", "stackTrace", "localizedMessage", "suppressed", "code", "message", "status"},
+@JsonIgnoreProperties(value =
+        {"cause", "stackTrace", "localizedMessage", "suppressed",  "message", "status", "causeReason"},
         ignoreUnknown=true)
 public class AuthApiException extends Exception {
 
-    private final HttpStatus status;
+
+    private int code;
+    private String error;
+    private String reason;
 
 
-    private int resultCode;
-
-    private String errMsg;
-
-
-    public AuthApiException(int resultCode, String errMsg ) {
-        this.status = HttpStatus.BAD_REQUEST;
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
+    public AuthApiException(int code, String error){
+        this.code = code;
+        this.error = error;
+        this.reason = null;
     }
 
-    public AuthApiException(HttpStatus status, int resultCode, String errMsg) {
-        this.status = status;
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
+
+    public AuthApiException(int code, String error, String reason){
+        this.code = code;
+        this.error = error;
+        this.reason = reason;
     }
 
-    public HttpStatus getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public String getErrMsg() {
-        return errMsg;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public int getResultCode() {
-        return resultCode;
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     @Override
     public String toString() {
-        return "AuthApiException{"+
-                "resultCode='"+resultCode+'\''+
-                ", error-description="+errMsg+
-                '}';
+
+        return "{"+
+                "\"code\":\""+code+
+                "\", \"error\":\""+error +
+                "\", \"reason\":\""+reason +
+                "\"}";
     }
 }
 
