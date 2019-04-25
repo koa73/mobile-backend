@@ -14,55 +14,55 @@ public class WebApiException extends Exception {
             ignoreUnknown=true)
 
 
-    private int resultCode;
+    private int code;
 
-    private String errMsg;
+    private String error;
 
-    private String reason;
+    private String error_description;
 
 
     public WebApiException (){}
 
     public WebApiException (int resultCode, String errMsg){
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
-        this.reason = null;
+        this.code = resultCode;
+        this.error = errMsg;
+        this.error_description = null;
     }
 
 
     public WebApiException (int resultCode, String errMsg, String causeReason){
-        this.resultCode = resultCode;
-        this.errMsg = errMsg;
-        this.reason = causeReason;
+        this.code = resultCode;
+        this.error = errMsg;
+        this.error_description = causeReason;
     }
 
     public String getCauseReason() {
-        return reason;
+        return error_description;
     }
 
     public String getErrMsg() {
-        return errMsg;
+        return error;
     }
 
     public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
+        this.error = errMsg;
     }
 
     public int getResultCode() {
-        return resultCode;
+        return code;
     }
 
     public void setReason(String causeReason) {
-        this.reason = causeReason;
+        this.error_description = causeReason;
     }
 
     @Override
     public String toString() {
 
         return "{"+
-                "\"status\":\""+resultCode+
-                "\", \"message\":\""+errMsg +
-                "\", \"cause\":\""+reason +
+                "\"code\":\""+code+
+                "\", \"error\":\""+error +
+                "\", \"error_description\":\""+error_description +
                 "\"}";
     }
 }

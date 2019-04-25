@@ -17,19 +17,19 @@ public class RestApiException extends Exception {
 
     private int code;
     private String error;
-    private String reason;
+    private String error_description;
 
     public RestApiException(int code, String error){
         this.code = code;
         this.error = error;
-        this.reason = null;
+        this.error_description = null;
     }
 
 
     public RestApiException(int code, String error, String reason){
         this.code = code;
         this.error = error;
-        this.reason = reason;
+        this.error_description = reason;
     }
 
 
@@ -48,7 +48,7 @@ public class RestApiException extends Exception {
             buffer.append(error.getDefaultMessage());
         }
         this.error = message;
-        this.reason = "Received wrong value(s) : "+buffer.toString()+" ;";
+        this.error_description = "Received wrong value(s) : "+buffer.toString()+" ;";
     }
 
 
@@ -69,11 +69,11 @@ public class RestApiException extends Exception {
     }
 
     public String getReason() {
-        return reason;
+        return error_description;
     }
 
     public void setReason(String reason) {
-        this.reason = reason;
+        this.error_description = reason;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class RestApiException extends Exception {
         return "{"+
                 "\"code\":\""+code+
                 "\", \"error\":\""+error +
-                "\", \"reason\":\""+reason +
+                "\", \"error_description\":\""+error_description +
                 "\"}";
     }
 
