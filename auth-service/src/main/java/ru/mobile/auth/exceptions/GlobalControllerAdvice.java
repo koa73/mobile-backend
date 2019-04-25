@@ -24,9 +24,9 @@ public class GlobalControllerAdvice {
 	public ResponseEntity<AuthApiException> handleException(DataIntegrityViolationException e, HttpServletRequest req) {
 
 		final String errorCode = e.getCause().getMessage().replaceAll("^.*errCode:\\s(\\d{3})\n?.*", "$1");
-		final int resultCode = (errorCode.length()== 3)?Integer.parseInt(errorCode):103; // unknown SQL req error
+		final int code = (errorCode.length()== 3)?Integer.parseInt(errorCode):103; // unknown SQL req error
 
-		AuthApiException exception=new AuthApiException( resultCode, "SQL request error.");
+		AuthApiException exception=new AuthApiException( code, "SQL request error.");
 		return handleException(exception, req);
 	}
 

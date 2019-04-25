@@ -4,3 +4,4 @@
 103 - Unknown SQL error
 104 - Access denied
 105 - Validation request value error
+115 - User authentication error.

@@ -33,13 +33,13 @@ public class CustomWebResponseExceptionTranslator extends DefaultWebResponseExce
         headers.setAll(responseEntity.getHeaders().toSingleValueMap());
 
         // TODO something with header or response
-        String resultCode = e.getMessage().replaceAll(".*@(\\d{3})$", "$1");
+        String code = e.getMessage().replaceAll(".*@(\\d{3})$", "$1");
 
-        if (resultCode.length() !=3){
-            resultCode = "115";
+        if (code.length() !=3){
+            code = "115";
         }
         log.error(body.toString());
-        body.addAdditionalInformation("resultCode", resultCode);
+        body.addAdditionalInformation("code", code);
 
         return new ResponseEntity<>(body, headers, responseEntity.getStatusCode());
     }
