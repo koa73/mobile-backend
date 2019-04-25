@@ -52,24 +52,24 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public String webHandler(HttpServletResponse httpServletResponse, WebApiException exception) {
 
-        exception.setReason(exception.getStackTrace()[0].getClassName()+"@"+exception.getStackTrace()[0].getMethodName());
+        exception.setError_description(exception.getStackTrace()[0].getClassName()+"@"+exception.getStackTrace()[0].getMethodName());
 
-        if (exception.getResultCode() == 100){
+        if (exception.getCode() == 100){
 
-            if (exception.getErrMsg() != null) {
+            if (exception.getError() != null) {
 
                 httpServletResponse.setStatus(400);
-                exception.setErrMsg(messages.get("error" + getReceivedErrorMsg(exception.getErrMsg())));
+                exception.setError(messages.get("error" + getReceivedErrorMsg(exception.getError())));
 
             } else {
 
                 httpServletResponse.setStatus(500);
-                exception.setErrMsg(messages.get("error.400"));
+                exception.setError(messages.get("error.400"));
             }
 
         } else {
 
-            httpServletResponse.setStatus(exception.getResultCode());
+            httpServletResponse.setStatus(exception.getCode());
         }
 
         return exception.toString();
