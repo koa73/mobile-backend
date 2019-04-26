@@ -31,8 +31,7 @@ public class UserController {
         return userService.verifyUser(request);
     }
 
-    //@PreAuthorize("#contact.name == authentication.name")
-    @PreAuthorize("#oauth2.hasScope('server')")
+    //@PreAuthorize("#oauth2.hasScope('server')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createUser(@RequestBody Candidate candidate) {
         return userService.createUser(candidate);
