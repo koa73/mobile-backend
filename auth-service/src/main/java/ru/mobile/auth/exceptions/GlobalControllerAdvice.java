@@ -35,6 +35,7 @@ public class GlobalControllerAdvice {
 		AuthApiException exception=new AuthApiException( 100,
 				"The operation was aborted.");
 
+		log.error(throwable.getMessage() + "-------------------->>>>\n"+throwable.toString());
 		return handleException(exception, req);
 	}
 }
