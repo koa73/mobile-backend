@@ -12,20 +12,20 @@ public class AuthApiException extends Exception {
 
     private int code;
     private String error;
-    private String reason;
+    private String error_description;
 
 
     public AuthApiException(int code, String error){
         this.code = code;
         this.error = error;
-        this.reason = null;
+        this.error_description = null;
     }
 
 
     public AuthApiException(int code, String error, String reason){
         this.code = code;
         this.error = error;
-        this.reason = reason;
+        this.error_description = reason;
     }
 
     public int getCode() {
@@ -44,12 +44,12 @@ public class AuthApiException extends Exception {
         this.error = error;
     }
 
-    public String getReason() {
-        return reason;
+    public String getError_description() {
+        return error_description;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setError_description(String error_description) {
+        this.error_description = error_description;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AuthApiException extends Exception {
         return "{"+
                 "\"code\":\""+code+
                 "\", \"error\":\""+error +
-                "\", \"reason\":\""+reason +
+                "\", \"error_description\":\""+error_description +
                 "\"}";
     }
 }

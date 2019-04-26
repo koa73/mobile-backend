@@ -77,7 +77,7 @@ public class UserRepositoryImpl implements UserRepository {
 
         } catch (Exception e){
 
-            throw new UsernameNotFoundException("User "+uid+" not found. @103");
+            throw new UsernameNotFoundException("User "+uid+" not found. @113");
         }
 
     }
