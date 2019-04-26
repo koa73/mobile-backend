@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -27,6 +28,14 @@ public class GlobalControllerAdvice {
 		final int code = (errorCode.length()== 3)?Integer.parseInt(errorCode):103; // unknown SQL req error
 
 		AuthApiException exception=new AuthApiException( code, "SQL request error.");
+		return handleException(exception, req);
+	}
+
+
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<AuthApiException> handleException(AccessDeniedException e, HttpServletRequest req) {
+
+		AuthApiException exception=new AuthApiException( 104, e.getMessage());
 		return handleException(exception, req);
 	}
 
