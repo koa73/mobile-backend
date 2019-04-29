@@ -83,7 +83,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
 
-		log.error(">>>>>> \n"+request.toString());
+		log.error(">>>>>> \n"+request.getParameter("topic_id"));
 
 		log.error(ex.getClass().getCanonicalName());
 
