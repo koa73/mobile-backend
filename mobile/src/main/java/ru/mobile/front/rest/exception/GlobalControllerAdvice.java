@@ -81,7 +81,9 @@ public class GlobalControllerAdvice {
 	}
 
 	@ExceptionHandler({ Throwable.class })
-	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
+	public ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
+
+		log.error(">>>>>> \n"+request.toString());
 
 		log.error(ex.getClass().getCanonicalName());
 
@@ -92,8 +94,6 @@ public class GlobalControllerAdvice {
 
 	@InitBinder
 	public void dataBinding(WebDataBinder binder, HttpServletRequest request) {
-
-		Log.error("<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		if (request.isUserInRole("ROLE_USER")){
 
