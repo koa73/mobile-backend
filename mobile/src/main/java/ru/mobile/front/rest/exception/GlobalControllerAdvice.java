@@ -83,7 +83,7 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
 
-		log.error(">>>>>> \n"+request.getParameterMap());
+		log.error(">>>>>> \n"+request.toString());
 
 		log.error(ex.getClass().getCanonicalName());
 
@@ -92,7 +92,20 @@ public class GlobalControllerAdvice {
 	}
 
 
+	@InitBinder
+	public void dataBinding(WebDataBinder binder, HttpServletRequest request) {
 
+		if (request.isUserInRole("ROLE_USER")){
+
+			log.error("------------------------------ ROLE_USER");
+
+			binder.bind(new MutablePropertyValues(Collections.singletonMap(
+					"user", request.getUserPrincipal().getName())));
+
+			binder.bind(new MutablePropertyValues(Collections.singletonMap(
+					"phone", request.getAttribute("phone"))));
+		}
+	}
 
 	private String getErrorMessage(int code){
 		return getErrorMessage(code, null);
