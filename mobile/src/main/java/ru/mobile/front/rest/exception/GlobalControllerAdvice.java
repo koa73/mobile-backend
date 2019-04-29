@@ -95,6 +95,7 @@ public class GlobalControllerAdvice {
 
 		if (request.isUserInRole("ROLE_USER")){
 
+			log.error(binder.isBindEmptyMultipartFiles()+"");
 			log.error("------------------------------ ROLE_USER  "+ request.getAttribute("phone") +" | "+request.getUserPrincipal().getName() );
 
 			//binder.bind(new MutablePropertyValues(Collections.singletonMap(
