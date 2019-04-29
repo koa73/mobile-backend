@@ -95,7 +95,7 @@ public class GlobalControllerAdvice {
 
 		if (request.isUserInRole("ROLE_USER")){
 
-			log.error("------------------------------ ROLE_USER  "+ request.getAttribute("phone"));
+			log.error("------------------------------ ROLE_USER  "+ request.getAttribute("phone") +" | "+request.getUserPrincipal().getName() );
 
 			//binder.bind(new MutablePropertyValues(Collections.singletonMap(
 			//		"user", request.getUserPrincipal().getName())));
