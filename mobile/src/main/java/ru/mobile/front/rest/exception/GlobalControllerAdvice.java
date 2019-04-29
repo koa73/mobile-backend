@@ -1,5 +1,6 @@
 package ru.mobile.front.rest.exception;
 
+import com.esotericsoftware.minlog.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.MutablePropertyValues;
@@ -91,6 +92,8 @@ public class GlobalControllerAdvice {
 
 	@InitBinder
 	public void dataBinding(WebDataBinder binder, HttpServletRequest request) {
+
+		Log.error("<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		if (request.isUserInRole("ROLE_USER")){
 
