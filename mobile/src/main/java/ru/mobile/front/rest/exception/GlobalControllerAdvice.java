@@ -102,8 +102,8 @@ public class GlobalControllerAdvice {
 			binder.bind(new MutablePropertyValues(Collections.singletonMap(
 					"user", request.getUserPrincipal().getName())));
 
-			binder.bind(new MutablePropertyValues(Collections.singletonMap(
-					"phone", request.getAttribute("phone"))));
+			//binder.bind(new MutablePropertyValues(Collections.singletonMap(
+			//		"phone", request.getAttribute("phone"))));
 		}
 	}
 
