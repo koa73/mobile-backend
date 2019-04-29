@@ -92,18 +92,7 @@ public class GlobalControllerAdvice {
 	}
 
 
-	@InitBinder
-	public void dataBinding(WebDataBinder binder, HttpServletRequest request) {
 
-		if (request.isUserInRole("ROLE_USER")){
-
-			binder.bind(new MutablePropertyValues(Collections.singletonMap(
-					"user", request.getUserPrincipal().getName())));
-
-			binder.bind(new MutablePropertyValues(Collections.singletonMap(
-					"phone", request.getAttribute("phone"))));
-		}
-	}
 
 	private String getErrorMessage(int code){
 		return getErrorMessage(code, null);
