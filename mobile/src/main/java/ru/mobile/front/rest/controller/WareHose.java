@@ -12,6 +12,7 @@ import ru.mobile.lib.rest.exception.RestApiException;
 import ru.mobile.lib.rest.validation.IntID;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
@@ -26,8 +27,9 @@ public class WareHose {
     @RequestMapping(path = "/goods/items", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int id,
-                                              Principal principal) throws RestApiException {
+                                              Principal principal, HttpServletRequest request) throws RestApiException {
 
+        log.error(request.getAttribute("phone")+" <<<<<--");
         return ResponseEntity.ok(warehouseService.getItems(id));
     }
 
