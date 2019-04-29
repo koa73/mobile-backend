@@ -25,7 +25,7 @@ public class WareHose {
 
     @RequestMapping(path = "/goods/items", method = RequestMethod.GET)
     //@PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int id,
+    public ResponseEntity<String> getItemList(@RequestParam(value = "topic_id", required = false) int id,
                                               Principal principal) throws RestApiException {
 
         log.error("------------------------------------\n"+id+"\n----------------------------------\n");
