@@ -28,6 +28,7 @@ public class WareHose {
     public ResponseEntity<String> getItemList(@IntID(min = 0, max = 3) @RequestParam("topic_id") int id,
                                               Principal principal) throws RestApiException {
 
+        log.error("------------------------------------\n"+id+"\n----------------------------------\n");
         return ResponseEntity.ok(warehouseService.getItems(id));
     }
 
