@@ -83,8 +83,6 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler({ Throwable.class })
 	public ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
 
-		log.error(">>>>>> \n"+request.toString());
-
 		log.error(ex.getClass().getCanonicalName());
 
 		RestApiException exception = new RestApiException(100, getErrorMessage(100), ex.getCause().toString());
@@ -99,8 +97,8 @@ public class GlobalControllerAdvice {
 
 			log.error("------------------------------ ROLE_USER"+request.toString());
 
-			binder.bind(new MutablePropertyValues(Collections.singletonMap(
-					"user", request.getUserPrincipal().getName())));
+			//binder.bind(new MutablePropertyValues(Collections.singletonMap(
+			//		"user", request.getUserPrincipal().getName())));
 
 			//binder.bind(new MutablePropertyValues(Collections.singletonMap(
 			//		"phone", request.getAttribute("phone"))));
