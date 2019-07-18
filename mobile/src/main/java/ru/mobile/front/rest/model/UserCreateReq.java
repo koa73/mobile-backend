@@ -11,33 +11,24 @@ import ru.mobile.front.domain.Candidate;
 
 public class UserCreateReq extends Candidate {
 
-    private String cmdCode;
 
-    @NotEmpty(message = "credentials")
-    private String credentials;
+    @NotEmpty(message = "credential")
+    private String credential;
 
     public UserCreateReq() {
         super();
     }
 
-    public UserCreateReq(String phone, String email, String password, String regId) {
-        super(phone, email, password, regId);
-    }
-
-    public String getCmdCode() {
-        return cmdCode;
-    }
-
-    public void setCmdCode(String  cmdCode) {
-        this.cmdCode = cmdCode;
+    public UserCreateReq(String phone, String email, String password) {
+        super(phone, email, password);
     }
 
 
-    public String getCredentials() {
-        return credentials;
+    public String getCredential() {
+        return credential;
     }
 
-    public void setCredentials(String credentials) {
-        this.credentials = credentials;
+    public void setCredential(String credential) {
+        this.credential = credential;
     }
 }

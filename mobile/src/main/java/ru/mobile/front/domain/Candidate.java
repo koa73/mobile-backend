@@ -6,15 +6,13 @@ public class Candidate {
     private String phone;
     private String password;
     private String email;
-    private String regId;
 
     public Candidate(){}
 
-    public Candidate(String phone, String email, String password, String regId){
+    public Candidate(String phone, String email, String password){
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.regId = regId;
     }
 
     public String getPhone() {
@@ -39,13 +37,5 @@ public class Candidate {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRegId() {
-        return regId;
-    }
-
-    public void setRegId(String regId) {
-        this.regId = regId;
     }
 }
