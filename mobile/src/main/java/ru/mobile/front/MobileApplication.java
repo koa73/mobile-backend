@@ -39,7 +39,7 @@ import ru.mobile.lib.service.security.CustomUserInfoTokenServices;
 @EnableConfigurationProperties
 @EnableAsync
 @Configuration
-@ComponentScan({"ru.mobile.front", "ru.mobile.lib.repository"})
+@ComponentScan({"ru.mobile.front", "ru.mobile.lib.repository", "ru.mobile.lib.service.firebase"})
 public class MobileApplication extends ResourceServerConfigurerAdapter {
 
     @Autowired
