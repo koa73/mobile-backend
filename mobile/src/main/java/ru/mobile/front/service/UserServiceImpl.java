@@ -34,11 +34,14 @@ public class UserServiceImpl implements UserService {
 
             UserCreateResp response = new UserCreateResp();
 
+            log.error("1");
             if (jwtParser.phoneVerify(request.getPhone(), request.getCredential())){
 
+                log.error("2");
                 final Candidate candidate = new Candidate(request.getPhone(), request.getEmail(), request.getPassword());
+                log.error("3");
                 try {
-
+                    log.error("4");
                     final String uid = authService.createUser(candidate);
                     if (uid != null){
 
