@@ -18,7 +18,7 @@ public class Candidate {
 
     private String password;
 
-    private String regId;
+    private String credential;
 
     public String getPhone() {
         return phone;
@@ -44,20 +44,19 @@ public class Candidate {
         this.password = password;
     }
 
-    public String getRegId() {
-        return regId;
+    public String getCredential() {
+        return credential;
     }
 
-    public void setRegId(String regId) {
-        this.regId = regId;
+    public void setCredential(String credential) {
+        this.credential = credential;
     }
 
     public SqlParameterSource getCallValue(){
         return new MapSqlParameterSource()
                 .addValue("in_phone", this.phone)
                 .addValue("in_password", this.password)
-                .addValue("in_email", this.email)
-                .addValue("in_regid", this.regId);
+                .addValue("in_email", this.email);
     }
 
     public SqlParameter[] getSqlParameters(){
@@ -65,8 +64,7 @@ public class Candidate {
         return new SqlParameter[] {
                 new SqlParameter("in_phone", Types.VARCHAR),
                 new SqlParameter("in_password", Types.VARCHAR),
-                new SqlParameter("in_email", Types.VARCHAR),
-                new SqlParameter("in_regid", Types.VARCHAR)
+                new SqlParameter("in_email", Types.VARCHAR)
         };
     }
 }
