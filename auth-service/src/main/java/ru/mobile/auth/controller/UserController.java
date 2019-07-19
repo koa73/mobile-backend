@@ -1,5 +1,7 @@
 package ru.mobile.auth.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +18,8 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserService userService;
@@ -35,6 +39,7 @@ public class UserController {
     @PreAuthorize("#oauth2.hasScope('server')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createUser(@RequestBody Candidate candidate) {
+        log.error("12");
         return userService.createUser(candidate);
     }
 }
