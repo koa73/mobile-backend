@@ -11,7 +11,6 @@ import ru.mobile.front.domain.Candidate;
 
 public class UserCreateReq extends Candidate {
 
-
     @NotEmpty(message = "credential")
     private String credential;
 

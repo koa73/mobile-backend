@@ -1,8 +1,11 @@
 package ru.mobile.front.domain;
 
 
+import ru.mobile.lib.rest.validation.Phone;
+
 public class Candidate {
 
+    @Phone
     private String phone;
     private String password;
     private String email;

@@ -44,14 +44,6 @@ public class Candidate {
         this.password = password;
     }
 
-    public String getCredential() {
-        return credential;
-    }
-
-    public void setCredential(String credential) {
-        this.credential = credential;
-    }
-
     public SqlParameterSource getCallValue(){
         return new MapSqlParameterSource()
                 .addValue("in_phone", this.phone)
