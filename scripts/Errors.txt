@@ -8,3 +8,4 @@
 113 - User not found
 114 - User is locked
 115 - User authentication error.
+116	- Verify phone error.

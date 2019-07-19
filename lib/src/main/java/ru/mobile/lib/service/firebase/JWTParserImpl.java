@@ -93,7 +93,7 @@ public class JWTParserImpl implements JWTParser {
 
         } catch (Exception e){
 
-            log.error("JWT parse uncnown error. Reason: " + e.getMessage());
+            log.error("JWT parse unknown error. Reason: " + e.getMessage());
             throw new RestApiException(116, e.getLocalizedMessage());
         }
     }
