@@ -9,6 +9,5 @@ import ru.mobile.lib.rest.exception.RestApiException;
  */
 public interface JWTParser {
 
-    public boolean phoneVerify(int cmdCode, String phone, String idToken) throws RestApiException;
-    public boolean phoneVerify(String phone, String idToken);
+    public boolean phoneVerify(String phone, String idToken)throws RestApiException;
 }

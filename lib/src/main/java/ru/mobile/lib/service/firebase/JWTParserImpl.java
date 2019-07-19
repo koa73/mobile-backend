@@ -43,17 +43,9 @@ public class JWTParserImpl implements JWTParser {
     @Autowired(required = false)
     GoogleCertClient client;
 
-    @Override
-    public boolean phoneVerify(String phone, String idToken) {
-        try {
-            return phoneVerify(1020, phone, idToken);
-        } catch (Exception e){
-            return false;
-        }
-    }
 
     @Override
-    public boolean phoneVerify(int cmdCode, String phone, String idToken) throws RestApiException {
+    public boolean phoneVerify(String phone, String idToken) throws RestApiException {
 
         try {
             final Claims claims = Jwts.parser()

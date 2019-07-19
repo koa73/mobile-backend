@@ -6,18 +6,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "cmdCode",
         "resultCode",
         "user",
         "errMsg"
 })
-public class UserCreateResp extends BaseResp {
+public class UserCreateResp {
 
     @JsonProperty("user")
     private String user;
 
-    public UserCreateResp(int cmdCode) {
-        super(cmdCode);
+    public UserCreateResp() {
+        super();
     }
 
     /**
