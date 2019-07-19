@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
         candidate.setPassword(encoder.encode(candidate.getPassword()));
         //return repository.createUser(candidate);
-        log.error(candidate.getCredential());
+        log.error(candidate.getPhone());
         return  null;
     }
 
